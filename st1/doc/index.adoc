@@ -95,43 +95,48 @@ The {rTI-6} is the recommended probe for the SensorTag.
 image::DevPack.jpg[DevPack, 300]
 
 
-== Setup the Empty Project
+== Loading the sample project
 
-From within CCS, open the _Resource Explorer_ and download and install the `empty_min_CC2650STK_TI` project.
-You need to modify the target configuration file `CC2650F128.ccxml`. Go to the _Advanced_ tab, and make sure that the following attributes are correct:
+I will use the _uartecho_CC2650STK_ project because it not only serves as a basic sanity check for the environment but also as a proof
+that the serial-over-USB host-target connection works as expected.
 
-* _Power Selection_:
-* _Voltage Level_:
-* _JTAG/SWD/cJTAG Mode_:
+Download and install the project from the Resource Explorer:
+
+[[uartecho_CC2650STK]]
+.Loading the sample project into the IDE
+image::uartecho-project.png[sample project]
+
+Verify that the required products are installed and selected:
+
+[[products]]
+.Required products
+image::installed-products.png[required products]
+
+Verify the target configuration:
+
+[[targetconf, target configuration]]
+.Target configuration
+image::target-conf.png[target configuration]
+
+And the debug settings:
+
+.Target configuration
+image::debug-settings.png[debug settings]
 
 
-.Required target configuration `CC2650F128.ccxml`
-image::target-conf.png[Target configuration]
-
-
-
-Finally, adjust the _Debug Settings_ as follows:
-
-* check _Reset Target on a connect_
-* check _Reset the target on a program load or restart_.
-
-.Debug Settings
-image::Debug-Settings.png[Debug Settings]
-
-NOTE: when using the default Debug Settings you encounter errors, see <<e2e1>>, <<e2e2>>, <<e2e3>>,
 
 [[logging]]
-== Setup logging (optional)
+== Using the System Analyzer
 
-The `README.md` of the `empty_min_CC2650STK_TI` project claims that the System Analyzer Unit is enabled.
-This is not correct and if you try to open xxxx in the Debug Perspective, you get this <<e2e5>>:
+The `README.md` of the sample project claims that the System Analyzer Unit is enabled.
+This is not correct and if you try to Tools -> System Analyzer -> Duration in the Debug Perspective, you get this:
 
 .System Analyzer
 image::DAC.png[Analysis Configuration]
 
-We first need to enable System Analyzer by modifying the TI-RTOS config file `empty_min.cfg` <<e2e5>>:
+We first need to enable System Analyzer by modifying the TI-RTOS config file `uartecho.cfg` <<e2e7>>:
 
-.empty_min.cfg
+.uartecho.cfg
 [source,javascript]
 ----
 
@@ -157,18 +162,49 @@ else if (Program.cpu.deviceName.match(/CC13/)) {
 }
 
 var LoggingSetup = xdc.useModule('ti.uia.sysbios.LoggingSetup'); // 3. Add LoggingSetup
-
+var UIABenchmark = xdc.useModule('ti.uia.events.UIABenchmark');
+LoggingSetup.benchmarkLogging = true;
+LoggingSetup.mainLoggerSize = 512;
 
 ----
 
-That should be enough to get you CPU load and Execution graph.
-You should see the CPU load and Task state messages in the Live Session window.
-If you want to do context aware profiling, it is a bit tricky, see <<e2e5>>.
+Instrument the source code:
 
-== Start a debug session
+.uartecho.c
+[source,c]
+----
+#include <ti/uia/runtime/LogUC.h>
+#include <ti/uia/events/UIABenchmark.h>
 
-Click on the _Debug_ icon to flash the program and start a debug session.
-Click on _Tools -> xxxx_ to open the System Analyzer.
+// ....
+
+Log_write1(UIABenchmark_start, (IArg) "prompt"); <1>
+UART_write(uart, echoPrompt, sizeof(echoPrompt));
+Log_write1(UIABenchmark_stop, (IArg) "prompt"); <2>
+
+// ....
+
+while (1) {
+   UART_read(uart, &input, 1);
+   Log_write1(UIABenchmark_start, (IArg) "write"); <3>
+   UART_write(uart, &input, 1);
+   Log_write1(UIABenchmark_stop, (IArg) "write"); <4>
+ }
+----
+
+<1> open the first duration measurement named _prompt_
+<2> close the first duration measurement named _prompt_
+<3> open the second duration measurement named _write_
+<4> close the second duration measurement named _write_
+
+
+Start a debug session and after the target has stopped at `main`, start the duration analysis
+(Tools -> System Analyzer -> Duration) and resume the debug session. In a serial console terminal, enter a couple of caracters and then pause the target.
+
+The _Duration_ tab will show the elapsed time for each log:
+
+.Measured durations
+image::duration.png[Duration]
 
 
 == References
@@ -225,7 +261,7 @@ but also the app doesn't work without warning if you don't grant access.
 
 - [[[e2e8]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/831951[CC2650STK: Can't use UART on CC2650 STK]
 * this was due to the usage of the {rTI-5} debug probe in conjunction with the suggested modification of the target configuration file in <<e2e5>>.
-The usage of the uart is demonstrated in the _uartecho_CC2650STK_TI_ as shown in this tutorial.
+The usage of the uart is demonstrated in the <<uartecho_CC2650STK_TI>> as shown in this tutorial.
 
 - [[[e2e9]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/837456[ CC1350STK: Where is the out-of-box demo source code for the CC1350 and CC2650 Sensor Tags ?]
 * another idiosyncrasy of the the CC2650STK and the CC1350STK: the out-of-box demo source code is not available. Why ?
