@@ -19,3 +19,4 @@
 
 - [[[st-sw1]]] http://dev.ti.com/tirex/content/tirtos_cc13xx_cc26xx_2_21_00_06/release_notes_tirtos_cc13xx_cc26xx_2_21_00_06.html[TI-RTOS CC13XX and CC26XX]
 - [[[st-sw2]]] http://www.ti.com/lit/ml/swru439j/swru439j.pdf[CC26xx,CC13xx Sensor Controller Studio Version2.5]
+- [[[st-sw3]]] http://www.ti.com/tool/SIMPLELINK-CC13X0-SDK[SimpleLink™ Sub-1 GHz CC13x0 Software Development Kit]

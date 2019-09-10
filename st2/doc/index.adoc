@@ -69,10 +69,10 @@ and the following software;
 
 * Linux Mint 18.2
 * Code Composer Studio 9.1 (CCS)
-* TI-RTOS for CC13XX and CC26XX, version 2.21.0.06 <<st-sw1>>
-* XDCtools version 3.32.0.06_core
+* SimpleLink CC13x0 SDK, version 3.20.0.23 <<st-sw3>>
 
-The Sensor Tag comes with a lithium coin cell. For development, I prefer a stable lab power supply:
+The Sensor Tag comes with a lithium coin cell.
+For development, I prefer a stable lab power supply:
 
 .The CC1350STK without coin cell slot ready for an external supply (1.8V - 3.8V)
 image::CC1350.jpg[CC1350STK, 300]
@@ -97,7 +97,7 @@ image::XDS110.jpg[JTAG connection, 300]
 The {rTI-6} is the recommended probe for the SensorTag.
 
 [[DevPack]]
-.The DevPack probe mounted onto the CC2650STK
+.The DevPack probe mounted onto the CC1350STK
 image::DevPack.jpg[DevPack, 300]
 
 WARNING: Remove the coin battery, it will be quickly drained by the debug connection.
@@ -127,11 +127,11 @@ image::target-conf.png[target configuration]
 
 And the debug settings:
 
-.Target configuration
+.Debug settings
 image::debug-settings.png[debug settings]
 
 You are now ready to start the first debug session.
-The companion tutorial shows how to activate <<../../st1/doc/index.adoc#logging>> with the System Analyzer for the CC2650 SensorTag.
+The companion tutorial shows how to activate <<../st1/index.adoc#logging>> with the System Analyzer for the CC2650 SensorTag.
 The procedure is the same for the CC1350STK.
 You are now ready to program and debug the SensorTag.
 

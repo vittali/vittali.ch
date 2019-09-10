@@ -124,7 +124,7 @@ image::target-conf.png[target configuration]
 
 And the debug settings:
 
-.Target configuration
+.Debug settings
 image::debug-settings.png[debug settings]
 
 You are now ready to start the first debug session. Before doing so, I show how to activate the System Analyzer. This is an optional step and applies to all
