@@ -26,8 +26,8 @@ The {rTI-1} is a tiny board based on the {rTI-2}. I think it is interesting for 
 * the small footprint (32 x 41 mm) allows for integration in an existing project (for example via UART) thus enabling BLE connectivity without having to deal with RF board design,
 * a variety of sensors that can be wirelessly interacted with via apps.
 
-The name _CC2650STK_ is the official part number, I will also use the term _SensorTag_ hereafter.
-There is a similar product {rTI-3} but with dual-band capability that I discuss in another https://vittali.ch/st2[tutorial] and that I recommend for new designs
+The name _CC2650STK_ is the official part number for the development kit, I will also use the term _SensorTag_ hereafter.
+A similar product {rTI-3} with dual-band capability is also available that I discuss in another https://vittali.ch/st2[tutorial]. I recommend the CC1350STK for new designs
 for reasons discussed hereafter.
 
 The project files for this Getting Started Tutorial (gst) can be cloned from this https://github.com/vittali/vittali.ch-gst.st1[git repo].
@@ -35,9 +35,9 @@ Here is an https://vittali.ch[overwiew] of related projects.
 
 == Objective
 
-Getting started with the Sensor Tag wasn't as easy as I hoped and this tutorial is basically a write-up of the problems I encountered.
-The goal is to assist new users in familiarizing themselves with some of the idiosyncrasies and shortcomings of the Sensor Tag.
-Some of the discussion threads on the {rTI-4} might also be useful during troubleshooting also for existing users.
+Getting started with the SensorTag wasn't as easy as I hoped and this tutorial is basically a write-up of the problems I encountered.
+The goal is to assist new users in familiarizing themselves with some of the idiosyncrasies and shortcomings of the SensorTag.
+Some of the discussion threads on the {rTI-4} might also be useful for existing users during troubleshooting.
 
 Of course, by the time you are reading this tutorial (written in Sep. 2019), some or all of the bugs mentioned might already be corrected.
 
@@ -45,12 +45,13 @@ Of course, by the time you are reading this tutorial (written in Sep. 2019), som
 
 The problems encountered and discussed on the {rTI-4} revolve around several topics:
 
-. the SensorTag App
-. installation problems
-. choice of the debug probe
-. project configuration files
-. connection problems
-. logging
+. the SensorTag App <<e2e1>>, <<e2e2>>, <<e2e6>>
+. installation problems <<e2e11>>
+. software availability <<e2e3>>, <<e2e9>>
+. choice of the debug probe <<e2e4>>, <<e2e5>>, <<e2e8>>
+. project configuration files <<e2e4>>, <<e2e8>>, <<e2e12>>
+. connection problems <<e2e4>>, <<e2e10>>
+. logging <<e2e7>>
 
 
 == Hardware Preparation and Requirements
@@ -199,13 +200,21 @@ while (1) {
 
 
 Start a debug session and after the target has stopped at `main`, start the duration analysis
-(Tools -> System Analyzer -> Duration) and resume the debug session. In a serial console terminal, enter a couple of caracters and then pause the target.
+(Tools -> System Analyzer -> Duration) and then resume the debug session. In a serial terminal, enter a couple of caracters and then pause the target.
 
 The _Duration_ tab will show the elapsed time for each log:
 
 .Measured durations
 image::duration.png[Duration]
 
+You are now ready to program and debug the SensorTag.
+
+== Conclusion
+
+The SensorTag is not a full blown development kit and there is a reason why the product page {rT-1} recommends to use a suitable LaunchPad rather than the SensorTag for development.
+However, the corresponing LaunchPad has a much larger footprint and no sensors, therefore the SensorTag can provide value for small projects and prototypes where BLE connectivity and additional sensors are desirable.
+If possible, use the {rTI-3} for new applications. This kit is part of the SimpleLink family and enjoys better documentation, tool support and Linux support for the BLE stack.
+I introduce the CC1350 SensorTag in a companion https://vittali.ch/st2[tutorial].
 
 == References
 
@@ -280,14 +289,14 @@ The battery/power supply must be removed during debugging.
 ==== related discussions started by other users
 
 
-- [[[e2e1]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/766831?CCS-CC2640R2F-INFO-Cortex-M3-0-File-Loader-Memory-write-failed-Timed-out-waiting-for-target-flashloader-to-execute-command-[CCS/CC2640R2F: INFO -- Cortex_M3_0: File Loader: Memory write failed: Timed out waiting for target flashloader to execute command.]
+- [[[e2e20]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/766831?CCS-CC2640R2F-INFO-Cortex-M3-0-File-Loader-Memory-write-failed-Timed-out-waiting-for-target-flashloader-to-execute-command-[CCS/CC2640R2F: INFO -- Cortex_M3_0: File Loader: Memory write failed: Timed out waiting for target flashloader to execute command.]
 Tags: Connection ....
 
-- [[[e2e2]]]  https://e2e.ti.com/support/tools/ccs/f/81/t/578693[CCS/CC2650: Memory write failed: Timed out waiting for target to halt]
+- [[[e2e21]]]  https://e2e.ti.com/support/tools/ccs/f/81/t/578693[CCS/CC2650: Memory write failed: Timed out waiting for target to halt]
 
-- [[[e2e3]]]  https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/803609?CCS-CC2640-The-program-works-perfectly-on-first-launch-but-has-Memory-write-failed-error-on-the-next-launch-[CCS/CC2640: The program works perfectly on first launch, but has "Memory write failed" error on the next launch.]
+- [[[e2e22]]]  https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/803609?CCS-CC2640-The-program-works-perfectly-on-first-launch-but-has-Memory-write-failed-error-on-the-next-launch-[CCS/CC2640: The program works perfectly on first launch, but has "Memory write failed" error on the next launch.]
 
-- [[[e2e4]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/744902?CCS-CC2652R-Cant-run-ble5-simple-central-cc2640r2lp-app[CCS/CC2652R: Cant run ble5_simple_central_cc2640r2lp_app]
+- [[[e2e23]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/744902?CCS-CC2652R-Cant-run-ble5-simple-central-cc2640r2lp-app[CCS/CC2652R: Cant run ble5_simple_central_cc2640r2lp_app]
 
 
 include::{shared-includedir}/st.adoc[]
