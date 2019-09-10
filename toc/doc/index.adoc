@@ -40,11 +40,6 @@ cloud platform.
 * https://vittali.ch/rb1[RB1: Run Node-RED on the IBM bluemix cloud and receive sensor data from your things],
 https://github.com/vittali/vittali.ch-gst.rb1[git repo].
 
-* https://vittali.ch/rb2[RB2: TIDEP0084],
-https://github.com/vittali/vittali.ch-gst.rb2[git repo].
-
-* https://vittali.ch/rb3[RB3: TIDC-01002],
-https://github.com/vittali/vittali.ch-gst.rb3[git repo].
 
 === Sensor Tags by Texas Instruments (TI)
 
