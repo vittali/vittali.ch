@@ -1,0 +1,259 @@
+= ST1: Getting started with the TI SensorTag CC2650
+:includedir: _includes
+:imagesdir: ./images
+:shared-includedir: ../../shared/doc/_includes
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: highlightjs
+:sectnums:
+:sectanchors:
+:sectlinks:
+// Refs:
+// TI
+:rTI-1: http://www.ti.com/tool/CC2650STK[SimpleLink™ Bluetooth low energy/Multi-standard SensorTag CC2650STK]
+:rTI-2: http://www.ti.com/product/CC2650[CC2650F128RGZ]
+:rTI-3: http://www.ti.com/tool/CC1350STK[Simplelink CC1350 SensorTag Bluetooth and Sub-1GHz Long Range Wireless Development Kit]
+:rTI-4: https://e2e.ti.com[TI E2E™ support forums]
+:rTI-5: http://www.ti.com/tool/TMDSEMU110-U[XDS110 JTAG Debug Probe]
+:rTI-6: https://www.ti.com/tool/CC-DEVPACK-DEBUG[SimpleLink SensorTag Debugger DevPack]
+
+[abstract]
+icon:home[link="https://vittali.ch"]
+
+The {rTI-1} is a tiny board based on the {rTI-2}. I think it is interesting for hobby/maker projects, prototypes and experimenation for at least two reasons:
+
+* the small footprint (32 x 41 mm) allows for integration in an existing project (for example via UART) thus enabling BLE connectivity without having to deal with RF board design,
+* a variety of sensors that can be wirelessly interacted with via apps.
+
+The name _CC2650STK_ is the official part number, I will also use the term _SensorTag_ hereafter.
+There is a similar product {rTI-3} but with dual-band capability that I discuss in another https://vittali.ch/st2[tutorial] and that I recommend for new designs
+for reasons discussed hereafter.
+
+The project files for this Getting Started Tutorial (gst) can be cloned from this https://github.com/vittali/vittali.ch-gst.st1[git repo].
+Here is an https://vittali.ch[overwiew] of related projects.
+
+== Objective
+
+Getting started with the Sensor Tag wasn't as easy as I hoped and this tutorial is basically a write-up of the problems I encountered.
+The goal is to assist new users in familiarizing themselves with some of the idiosyncrasies and shortcomings of the Sensor Tag.
+Some of the discussion threads on the {rTI-4} might also be useful during troubleshooting also for existing users.
+
+Of course, by the time you are reading this tutorial (written in Sep. 2019), some or all of the bugs mentioned might already be corrected.
+
+== Problems
+
+The problems encountered and discussed on the {rTI-4} revolve around several topics:
+
+. the SensorTag App
+. installation problems
+. choice of the debug probe
+. project configuration files
+. connection problems
+. logging
+
+
+== Hardware Preparation and Requirements
+
+For this is tutorial, I was using the following hardware:
+
+* the {rTI-1}
+* the {rTI-5} (not supported, as it turned out) and the {rTI-6}
+
+and the following software;
+
+* Linux Mint 18.2
+* Code Composer Studio 9.1 (CCS)
+* TI-RTOS for CC13XX and CC26XX, version 2.21.0.06 <<st-sw1>>
+* XDCtools version 3.32.0.06_core
+
+The Sensor Tag comes with a lithium coin cell. For development, I prefer a stable lab power supply:
+
+.The CC2650STK without coin cell slot ready for an external supply (1.8V - 3.8V)
+image::CC2650.jpg[CC2650STK, 300]
+
+
+NOTE: If you leave the coin battery inserted during debugging (which is not recommended), the battery will be drained in less than a day.
+
+=== Using the XDS110 debug probe
+
+The {rTI-5} can be hooked up to the SensorTag via a JTAG cable and a small adapter board.
+
+WARNING: while the connection between the probe and the SensorTag is electrically correct, I was unable to get the XDS110 to work in with the SensorTag.
+
+
+[[JTAG, XDS110 connection]]
+.JTAG connection between the XSD110 debugger and the CC2650STK ( the small adapter PCB is part of the XDS110 deliverable)
+image::XDS110.jpg[JTAG connection, 300]
+
+=== Using the SensorTag DevPack
+
+The {rTI-6} is the recommended probe for the SensorTag.
+
+[[DevPack]]
+.The DevPack probe mounted onto the CC2650STK
+image::DevPack.jpg[DevPack, 300]
+
+
+== Setup the Empty Project
+
+From within CCS, open the _Resource Explorer_ and download and install the `empty_min_CC2650STK_TI` project.
+You need to modify the target configuration file `CC2650F128.ccxml`. Go to the _Advanced_ tab, and make sure that the following attributes are correct:
+
+* _Power Selection_:
+* _Voltage Level_:
+* _JTAG/SWD/cJTAG Mode_:
+
+
+.Required target configuration `CC2650F128.ccxml`
+image::target-conf.png[Target configuration]
+
+
+
+Finally, adjust the _Debug Settings_ as follows:
+
+* check _Reset Target on a connect_
+* check _Reset the target on a program load or restart_.
+
+.Debug Settings
+image::Debug-Settings.png[Debug Settings]
+
+NOTE: when using the default Debug Settings you encounter errors, see <<e2e1>>, <<e2e2>>, <<e2e3>>,
+
+[[logging]]
+== Setup logging (optional)
+
+The `README.md` of the `empty_min_CC2650STK_TI` project claims that the System Analyzer Unit is enabled.
+This is not correct and if you try to open xxxx in the Debug Perspective, you get this <<e2e5>>:
+
+.System Analyzer
+image::DAC.png[Analysis Configuration]
+
+We first need to enable System Analyzer by modifying the TI-RTOS config file `empty_min.cfg` <<e2e5>>:
+
+.empty_min.cfg
+[source,javascript]
+----
+
+
+BIOS.logsEnabled = true; // 1. Enable BIOS logging:
+// 2. Disable the ROM build by commenting out these lines:
+
+//var ROM = xdc.useModule('ti.sysbios.rom.ROM');
+if (Program.cpu.deviceName.match(/CC2640R2F/)) {
+//    ROM.romName = ROM.CC2640R2F;
+}
+else if (Program.cpu.deviceName.match(/CC26.2/)) {
+//    ROM.romName = ROM.CC26X2V2;
+}
+else if (Program.cpu.deviceName.match(/CC13.2/)) {
+//    ROM.romName = ROM.CC13X2V2;
+}
+else if (Program.cpu.deviceName.match(/CC26/)) {
+//    ROM.romName = ROM.CC2650;
+}
+else if (Program.cpu.deviceName.match(/CC13/)) {
+//    ROM.romName = ROM.CC1350;
+}
+
+var LoggingSetup = xdc.useModule('ti.uia.sysbios.LoggingSetup'); // 3. Add LoggingSetup
+
+
+----
+
+That should be enough to get you CPU load and Execution graph.
+You should see the CPU load and Task state messages in the Live Session window.
+If you want to do context aware profiling, it is a bit tricky, see <<e2e5>>.
+
+== Start a debug session
+
+Click on the _Debug_ icon to flash the program and start a debug session.
+Click on _Tools -> xxxx_ to open the System Analyzer.
+
+
+== References
+
+[bibliography]
+=== Technical Documents
+
+- [[[td1]]] http://www.ti.com/lit/ds/symlink/cc2650.pdf[CC2650 SimpleLinkTM Multistandard Wireless MCU Data Sheet]
+
+[bibliography]
+==== More literature
+
+- [[[ble1]]] http://www.ti.com/lit/ug/swru393e/swru393e.pdf[CC26x0 SimpleLink™Bluetooth ®low energy Software Stack 2.2.x, Developer's Guide]
+
+[bibliography]
+=== Development Tools
+
+- [[[dt1]]] http://www.ti.com/tool/CC2650STK[SimpleLink™ Bluetooth low energy/Multi-standard SensorTag CC2650STK]
+
+[bibliography]
+=== Software
+
+- [[[sw1]]] http://www.ti.com/lit/ug/swru393e/swru393e.pdf[CC26x0 SimpleLink™ Bluetooth® low energy Software Stack 2.2.x]
+
+[bibliography]
+=== TI E2E support forum
+
+==== dicussions started by the author
+
+- [[[e2e1]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/822386[CC2650STK: SensorTag doesn't show up in device list of TI SensorTag App]
+* choosing the right app: the flyer in the box mentions an app that is not available anymore, the _SimpleLink SensorTag_ on Google Play is the correct one, although the CC2650STK is not part of the SimpleLink family
+* granting permissions: for some reason you must grant access to your phone's location. This is not only annoying because this is supposed to be demo software,
+but also the app doesn't work without warning if you don't grant access.
+
+- [[[e2e2]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/828436[CC2650STK: Cloud Settings for the IBM IOT platform for BlueMix Free]
+* currently the IBM Watson IoT platform access (as opposed to the IBM Quickstart access) is not available with the _SimpleLink SensorTag_ app due to a bug.
+
+- [[[e2e3]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/831544[CC2650STK: Is there a linux compatible BLE stack for the CC2650STK]
+* no, this is one of the idiosyncrasies of the CC2650STK, refer to the {rTI-3} for a Linux compatible BLE development environment.
+
+- [[[e2e4]]] https://e2e.ti.com/support/tools/ccs/f/81/t/828577[CCS/CC2650STK: Failed to launch debug session for CC2650STK]
+* contrary to what the discussion suggests, the target configuration of the _uartecho_CC2650STK_ project is correct, no modification is required.
+* contrary to what the discussion suggests, the {rTI-5} is currently not supported for the Sensor Tags, use the {rTI-6}.
+* contrary to what the discussion suggests, the coin battery must not be inserted during debugging, the target is powered by the {rTI-6}.
+
+- [[[e2e5]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/827756[CCS/CC2650STK: Can I use CCS and the XDS110 debug probe to program and debug the CC2650STK SensorTag]
+* while it is possible to connect the {rTI-5}, see Figure <<JTAG>>, this debug probe is currently not supported for the Sensor Tag.
+
+- [[[e2e6]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/832998[CC1350STK: Downloading new firmware images to the device via the Over-the-Air-Download (OAD) service not as described in doc]
+* applies to the CC2650 SensorTag and {rTI-3}: this is bug _SimpleLink SensorTag_ app.
+
+- [[[e2e7]]] https://e2e.ti.com/support/tools/ccs/f/81/p/831543/3077956[CCS/CC2650STK: Can't start the System Analyzer despite the README.md saying so]
+* see chapter <<logging>>
+
+- [[[e2e8]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/831951[CC2650STK: Can't use UART on CC2650 STK]
+* this was due to the usage of the {rTI-5} debug probe in conjunction with the suggested modification of the target configuration file in <<e2e5>>.
+The usage of the uart is demonstrated in the _uartecho_CC2650STK_TI_ as shown in this tutorial.
+
+- [[[e2e9]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/837456[ CC1350STK: Where is the out-of-box demo source code for the CC1350 and CC2650 Sensor Tags ?]
+* another idiosyncrasy of the the CC2650STK and the CC1350STK: the out-of-box demo source code is not available. Why ?
+
+- [[[e2e10]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/832999[CCS/CC1350STK: Empty project debug session not as expected]
+* applies to CC2650STK and CC1350STK: I am unable to reproduce the errors mentioned. I suppose that they were related to the usage of the {rTI-5} rathern than the {rTI-6}.
+
+- [[[e2e11]]] https://e2e.ti.com/support/tools/ccs/f/81/t/832755[CCS/CODECOMPOSER: Code Composer Studio 9 Installer hangs on Windows 7 SP1]
+* installing the CC13x and CC26xx device support on Windows 7 Pro fails, this is a bug related to the TI emulator driver installation.
+
+- [[[e2e12]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/833000[CCS/CC1350STK: Setting for Power Selection for CC1350STK and for CC2650STK]
+* the power selection in the target configuration files of the example projects for the CC2650STK and the CC1350STK are correct, when using {rTI-6}.
+The battery/power supply must be removed during debugging.
+
+
+==== related discussions started by other users
+
+
+- [[[e2e1]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/766831?CCS-CC2640R2F-INFO-Cortex-M3-0-File-Loader-Memory-write-failed-Timed-out-waiting-for-target-flashloader-to-execute-command-[CCS/CC2640R2F: INFO -- Cortex_M3_0: File Loader: Memory write failed: Timed out waiting for target flashloader to execute command.]
+Tags: Connection ....
+
+- [[[e2e2]]]  https://e2e.ti.com/support/tools/ccs/f/81/t/578693[CCS/CC2650: Memory write failed: Timed out waiting for target to halt]
+
+- [[[e2e3]]]  https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/803609?CCS-CC2640-The-program-works-perfectly-on-first-launch-but-has-Memory-write-failed-error-on-the-next-launch-[CCS/CC2640: The program works perfectly on first launch, but has "Memory write failed" error on the next launch.]
+
+- [[[e2e4]]] https://e2e.ti.com/support/wireless-connectivity/bluetooth/f/538/t/744902?CCS-CC2652R-Cant-run-ble5-simple-central-cc2640r2lp-app[CCS/CC2652R: Cant run ble5_simple_central_cc2640r2lp_app]
+
+
+include::{shared-includedir}/st.adoc[]
+include::{shared-includedir}/mcu.adoc[]
+include::{shared-includedir}/ble.adoc[]

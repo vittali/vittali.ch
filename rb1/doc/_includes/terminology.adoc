@@ -1,0 +1,132 @@
+
+== Terminology
+As far as this tutorial is concerned,
+Bluemix offers _Cloud Foundry Services_, _Services_ and allows us to develop
+_Cloud Foundry Apps_.
+
+This can be seen on the Dashboard:
+
+.The Bluemix Dashboard
+image::dashboard.png[Dashboard]
+
+More important for our work is the _Resource list_ that you can open from the hamburger menu:
+
+.The Bluemix Resource list
+image::resource-list-intro.png[Resource list]
+
+Here you can see the items we are going to create in this tutorial:
+
+* _Cloud Foundry Apps_: we will develop the _My-Node-Red-App_, a {rNR-1} _flow_-based javascript application without writing a single line of code.
+* Cloud Foundry Services: we create the _My-IoT-Platform_ service that acts as a MQTT broker, amongst other tasks.
+In particular, here we configure MQTT communications between our devices and the database.
+* Cloud Foundry Services: we create the _My-Node-RED-App-cloudantNoSQLDB_ database,
+more precisely an alias to the underlying database service. This alias is created automatically.
+* Services: Bluemix creates _Cloudant-ay_ as the underlying database service where we store sensor readings.
+The name is choosen by Bluemix during setup. Your name will be different.
+* Services: Continuous Delivery: the toolchain service that we have enabled for the app.
+It includes a git repo and a delivery pipeline that deploys our app each time we push to the repo.
+* Developer Tools: _My-Node-RED-App_ represents the actual toolchain associated with the app.
+
+=== Dashboards
+
+In addition to the initial Bluemix Dashboard ( which I found not useful for this tutorial), there is the IoT Platform dashboard and
+the Cloudant database dashboard:
+
+.The IoT Platform Dashboard
+image::IoT-dashboard-intro.png[IoT Platform Dashboard]
+
+The IoT Platform Dashboard is used to create Device Types and Devices.
+
+.The Cloudant Dashboard
+image::cloudant-dashboard-intro.png[Cloudant Dashboard]
+
+The Cloudant Dashboard will contain our sensor data.
+The nodered database is created by Bluemix during setup.
+
+=== Credential hell
+
+One of the most intimidating aspects when using the cloud for the first time seems to be the avalanche
+of credentials, passwords, access tokens, ids, and other access codes.
+
+_Access code_ is a generic name I choose to refer to any kind of 'secret' that is required to use Bluemix and
+the services it provides.
+Here is a preview that should help to mitigate that onslaught.
+
+.Access codes
+[[table1, Access codes]]
+[cols=6*,options=header]
+|======
+|Access Code
+|Name
+|Context
+|provided by
+|Why ?
+|Example
+
+|OrgId
+|OrgId
+|IoT Platform Dashboard -> top right corner
+|Bluemix
+|required for MQTT communications
+|nhr9i3 (6 char string)
+
+|Bluemix
+|IBM Cloud Api Key
+|Dashboard -> Manage -> Access IAM -> IBM Cloud Api Keys
+|Bluemix
+|required by the Continuous Delivery Toolchain service
+|pmt_DmpY_nL6ExU8FhAk5C4f4-l73no <trunc>
+
+|IoT Platform
+|Api Key
+|IoT Platform Dashboard -> Apps -> Generate API Key
+|Bluemix
+|mqtt clients need these credentials to access the platform
+|API Key: a-m60i9s-gjv4sdf2t Auth Token: fiL1QgUEknggdfg88
+
+|DAT
+|Device Authentification Token
+|IoT Platform Dashboard -> Devices -> Add Device -> .... -> Device Authentification Token
+|User
+|mqtt devices need this token to access the platform
+|any string
+
+|git
+|SSH key
+|Toolchain -> git -> top right corner -> Settings -> SSH Keys
+|ssh-keygen
+|to clone and push the project's repository
+|ssh-rsa AAAAB3NzaC1yc2EA <trunc>
+
+|VCAP
+|VCAP_Services enironment variable
+|My-Node-RED-App -> Runtime -> Environment variables -> Export
+|Bluemix
+|to be able to locally access remote services like the Cloudant database
+|{  "cloudantNoSQLDB": [ <trunc>
+
+|NR-flow
+|Node-RED credential secret
+|<<pop>>
+|User
+|to decrypt `flow.json`, the file that defines a Node-RED application
+|any string
+
+|NR-editor
+|Node-RED editor access
+|<<pop>>
+|User
+|to access the editor and possibly change the flow.json file
+|username: admin, password: $2a$08$LUhxY <trunc>
+
+|======
+
+WARNING: When you create an access code on Bluemix, copy and save it immediately. Some codes can't be retrieved at a later stage.
+Also, do not put these codes in the project's repository.
+
+NOTE: In the following we assume orgId = *nhr9i3*, your orgId will be different.
+
+[[Bac, Bluemix access code]]
+Create the Bluemix access code right now:
+
+`Dashboard → Manage → Access IAM → IBM Cloud Api Keys -> Create an IBM Cloud API key`

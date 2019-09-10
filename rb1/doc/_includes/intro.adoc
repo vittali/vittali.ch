@@ -1,0 +1,29 @@
+The {rMQ-1} protocol is a good fit for these requirements as it is lightweight and allows
+for the required two-way communication. Devices can publish messages and subscribe to commands emitted by application.
+{rIB-1} offers all the services we need based on the Lite Plan also known as the Free Plan.
+I am not sure if I understand the difference between _IBM Cloud_ and _IBM Bluemix_,
+hereafter I will always refer to _Bluemix_. Bluemix provides _Cloud Foundry_, a Platform-as-a-Service infrastructure
+that will allow us to run our application and a database without any installation chores. Bluemix also provides
+the IBM Watson IoT Platform, hereafter referred to as _IoT Platform_. This is the central communication hub for our MQTT-enabled devices.
+
+{rNR-1} is a programming environment specifically designed for IoT requirements. It is based
+on javascript but for a simple application almost no coding required. It is very easy to set up
+a fully functional gui and it is has excellent support for Bluemix.
+
+Presuming you have now created an account on IBM Bluemix (the Lite/Free Plan is sufficient), this tutorial
+will walk you through the following steps:
+
+. get to know required terminology
+. get to know the credentials hell
+. set up a git repo where your code will reside
+. develop and test the application locally
+. deploy the application to bluemix
+. test your work from your desktop.
+
+The application, also known as the _app_ hereafter, is based on this https://developer.ibm.com/tutorials/iot-edge3[IBM developer tutorial] albeit in a simplified form.
+The motivation for adopting the work flow discussed in this tutorial is derived from two post by Nick O'Leary:
+
+* https://knolleary.net/2018/06/01/creating-a-node-red-deployment-pipeline-to-ibm-cloud/[Creating a Node-RED deployment pipeline to IBM Cloud]
+* https://knolleary.net/2018/06/05/connecting-to-ibm-cloud-services-from-node-red[Connecting to IBM Cloud services from Node-RED]
+
+The main difference with respect to the first link is that Bluemix now provides an integrated Continuous Delivery Toolchain, which simplifies the setup.

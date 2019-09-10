@@ -1,0 +1,89 @@
+= Software & Electronics & Embedded
+:nofooter:
+:icons: font
+:toc: left
+:docinfo: shared-head
+
+A variety of small projects, tutorials and development notes in the field sofware development, electronics design and embedded devices.
+
+In addition to the https://github.com/vittali/vittali.ch[documentation repo],
+each project has its own github repo with source code and supporting material that you can clone.
+Please use the github issue tracker to provide feedback and corrections.
+This work is licensed under the terms of the MIT license.
+
+Peter Vittali
+
+== Getting started tutorials
+
+Short step-by-step recipes to get up and running on a very specific topic
+without trying to be generic. Prone to be obsolete by the time you read it.
+
+=== A dog's best friend: The Beagle Bone Black and his Programmable Realtime Unit
+
+A series of tutorials dedicated to real-time programming on the Beagle Bone Black (BBB)
+leveraging the PRU (Programmable Realtime Unit) on the Cortex A8 Sitara processor.
+I am interested in using the BBB as an inexpensive test equipment
+to apply stimulus to other embedded systems and to obtain time correlated measurements.
+These tutorials have been written and tested with Linux Mint 18.2 on the development host PC.
+
+* https://vittali.ch/bbb1[BBB1: Getting started],
+https://github.com/vittali/vittali.ch-gst.bbb1[git repo].
+
+=== IoT (Internet of Things)
+
+Embedded resource restraint devices like microcontrollers without operating system
+communicate with a central hub running on a publicly accessible
+cloud platform.
+
+* https://vittali.ch/rb1[RB1: Run Node-RED on the IBM bluemix cloud and receive sensor data from your things],
+https://github.com/vittali/vittali.ch-gst.rb1[git repo].
+
+* https://vittali.ch/rb2[RB2: TIDEP0084],
+https://github.com/vittali/vittali.ch-gst.rb2[git repo].
+
+* https://vittali.ch/rb3[RB3: TIDC-01002],
+https://github.com/vittali/vittali.ch-gst.rb3[git repo].
+
+=== Sensor Tags by Texas Instruments (TI)
+
+* https://vittali.ch/st1[ST1: Getting started with the TI CC2650 Sensor Tag],
+https://github.com/vittali/vittali.ch-gst.st1[git repo].
+
+* https://vittali.ch/st2[ST2: Getting started with the TI CC1350 Sensor Tag],
+https://github.com/vittali/vittali.ch-gst.st2[git repo].
+
+== Abbreviations
+
+gst:: getting started tutorial
+st,ST:: sensor tag
+iot:: internet of things
+TI:: Texas Instruments
+RB:: Node-Red on Bluemix
+BBB:: Beagle Bone Black
+BLE:: Bluetooth Low Energy
+MCU:: microcontroller
+
+== Contact & Impressum
+
+If you have questions or feedback please use the github issue tracker of the relevant project.
+Alternatively, please send me an email:
+
+++++
+<form id="contactform" method="POST">
+    <input type="text" name="name" placeholder="Your name">
+    <input type="email" name="_replyto" placeholder="Your email">
+    <input type="hidden" name="_subject" value="Website contact" />
+    <textarea name="message" placeholder="Your message"></textarea>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="submit" value="Send">
+</form>
+<script>
+    var contactform =  document.getElementById('contactform');
+    contactform.setAttribute('action', '//formspree.io/' + 'vittali' + '@' + 'sunrise' + '.' + 'ch');
+</script>
+++++
+
+Peter Vittali +
+Weidenweg 1 +
+CH-4127 Birsfelden, Schweiz +
++41 61 271 89 33

@@ -1,0 +1,19 @@
+
+=== TI-15.4 Stack
+
+[bibliography]
+==== Technical Documents
+
+[bibliography]
+==== More literature
+
+- [[[15_4-ml1]]] https://training.ti.com/simplelink-academy-ti-154-stack-sensor-and-collector-ti-154-stack-project-zero[4.1 SimpleLink™ Academy - TI-15.4 Stack | Sensor and Collector TI-15.4 Stack Project Zero]
+
+
+[bibliography]
+==== Software
+
+- [[[15_4-sw1]]] http://www.ti.com/tool/TI-15.4-STACK-GATEWAY-LINUX-SDK[TI 15.4-Stack Gateway Linux Software Development Kit]
+
+[bibliography]
+==== Development Tools

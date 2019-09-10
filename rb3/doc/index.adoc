@@ -1,0 +1,23 @@
+= RB3: TIDC-01002
+:includedir: _includes
+:imagesdir: ./images
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: highlightjs
+:sectnums:
+// Refs:
+// IBM
+:rIB-1: https://cloud.ibm.com[IBM Bluemix]
+// TI
+:rTI-1: http://www.ti.com/tool/TIDC-01002?jktype=design[SimpleLink™ Sub-1 GHz Sensor to Cloud Gateway Reference Design for TI-RTOS Systems]
+:rTI-2: http://www.ti.com/lit/ug/tidud09a/tidud09a.pdf[TI Designs:TIDC-01002 Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design]
+
+[abstract]
+icon:home[link="https://vittali.ch"]
+
+NOTE: Work in Progress
+
+In this tutorial we will create the required infrastructure and develop a small application with a
+gui and a database backend accessible on the internet.
+The project files can be cloned from this https://github.com/vittali/vittali.ch-gst.rb3[git repo].

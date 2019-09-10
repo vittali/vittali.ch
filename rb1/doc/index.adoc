@@ -1,0 +1,36 @@
+= Red and Blue: Run Node-RED on the IBM bluemix cloud and receive sensor data from your things
+:includedir: _includes
+:imagesdir: ./images
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: highlightjs
+:sectnums:
+// Refs:
+// IBM
+:rIB-1: https://cloud.ibm.com[IBM Bluemix]
+// MQTT
+:rMQ-1: https://www.ibm.com/support/knowledgecenter/SSQP8H/iot/platform/reference/mqtt/index.html[MQTT messaging]
+// Node-RED
+:rNR-1: https://nodered.org[Node-RED]
+
+You have an embedded device like a microcontroller and you want to upload sensor data
+to the internet. You also want to take actions depending on the data. You want to run from a cheap device powered by a
+small lithium coin, in other words your device is severly resource restraint.
+Of course, you also want a database to store sensor readings and a nice gui so that others can use your work.
+You also know that setting up your own server and maintaining it is not worth the effort. So you want
+a cloud service, more precisely a _free_ cloud service.
+
+In this tutorial we will create the required infrastructure and develop a small application with a
+gui and a database backend accessible on the internet.
+The project files can be cloned from this https://github.com/vittali/vittali.ch-gst.rb1[git repo].
+
+include::{includedir}/intro.adoc[]
+include::{includedir}/terminology.adoc[]
+include::{includedir}/create-app.adoc[]
+include::{includedir}/create-iot.adoc[]
+include::{includedir}/install-software.adoc[]
+include::{includedir}/instance-template.adoc[]
+include::{includedir}/workflow-init.adoc[]
+include::{includedir}/workflow.adoc[]
+include::{includedir}/refs.adoc[]

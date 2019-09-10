@@ -1,0 +1,27 @@
+
+== Develop locally, Deploy remotely
+
+Develop your application with the Node-RED editor simply
+by selecting nodes and wiring them toegether.
+
+Run the mqtt-client:
+
+[listing]
+$ ./run-client.sh
+20 Aug 01:24:03 - created client
+20 Aug 01:24:03 - publishing
+20 Aug 01:24:04 - published: 1
+20 Aug 01:24:05 - published: 2
+20 Aug 01:24:06 - published: 3
+^C
+
+
+Go to the gui by appending `ui` to the url of the app.
+
+Finally, commit and push to start the build-deploy process in the Delivery Pipeline.
+
+
+When you open the app's url, you will be directed to the gui straight away:
+
+.The app running remotely
+image::gui.png[gui]
