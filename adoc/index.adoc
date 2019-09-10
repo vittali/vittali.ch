@@ -1,0 +1,214 @@
+= Building resilience in Tiny Projects (TiPs)
+:nofooter:
+:icons: font
+:toc: left
+:includedir: _includes
+:imagesdir: ./images
+:source-highlighter: highlightjs
+
+
+Tiny software and electronics projects (TiPs) are ubiquitous. The https://www.arduino.cc[The Arduino Ecosystem] has facilitated many of them.
+But some TiPs do not evolve and eventually become obsolete.
+Others do evolve and have a tendency to become un-tiny and untidy and unfit. 
+I would like my TiPs to evolve and to adapt to my needs while staying tiny. +
+In other words: I would like to make my TiPs resilient when submitted to changes.
+This website is about exploring strategies to make TiPs resilient. +
+By the way: projects that are not tiny - in particular those that look tiny but turn out to be otherwise - are called _Not a TiPs_ (NoTips).
+
+Each project has a companion github repository. Please use the github issue tracker for questions, feedback and corrections.
+Or contact me directly with the email form below.
+
+Feel free to copy (MIT license).
+
+
+Copyright (C) 2024 Peter Vittali
+
+
+== TiPs #7
+
+
+* Smart Village: Remote monitoring of drinking water consumption in a rural environment icon:file[link=TiPs_7/main.pdf].
+
+
+.Objectives (_Jan 2024_)
+. Build a low power water metering system in a remote location.
+. Having failed to do so in <<TiPs_5, TiPs #5>>, drop the requirements for low power and non-cellular.
+. Learn Latex for document typesetting involving math and for improved tooling for references and bibliography.
+. Transfer document base to https://www.zotero.org/[zotero].
+
+.Building Resilience
+. Describe the electronics design part of this TiPs as a set of modules.
+. Propose an approach to reason about electronic circuits that is inspired from API ( Application Programming Interface) design.
+. Each circuit module should be as autonomous, reusable and testable as possible.
+. Apply Unit Testing, a standard software development method, to electronics design.
+. Improve document management.
+
+.Resilience Report  (_Jan 2024_) 
+[none]
+. icon:plus[role=green] icon:plus[role=white] icon:plus[role=white] I believe that the proposed documentation approach can be useful, but it has to be applied to many TiPs before making more conclusive statements.
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=red] The Arduino firmware that is part of this TiPs is
+not resilient at all. It suffers from the same problem as  <<TiPs_5, TiPs #5>>: Two software subsystems are 
+coupled and can not be tested in isolation.
+
+*Status*: in production.
+
+https://github.com/vittali/TiPs_7[compagnion repo]
+
+
+== TiPs #6
+
+* https://vittali.ch/TiPs_6[Choosing a hardware toolchain for a cloud connected sensor (Linux host based)]
+
+This projects is very similar to <<TiPs_5, TiPs #5>>. 
+
+*Status*: on hold.
+
+== TiPs #5
+
+* https://vittali.ch/TiPs_5[Choosing a hardware toolchain for a cloud connected sensor (microcontroller based)]
+
+.Objectives (_Apr 2020_)
+. Complement <<TiPs_3, TiPs #3>> with a set of hardware components.
+. Build a low power water metering system in a remote location using a Sub 1 Ghz radio to transmit sensor readings to the cloud.
+. Use a Sub 1 Ghz network rather than a cellular network.
+
+.Building Resilience
+* I consider reducing power consumption a strong resilience building technique.
+* Vendor independence  is a fundamental requirement for resilient TiPs. In this case, this means independence from cellular network operators (and SIM cards) and
+thus reduced transmission costs. More importantly, though, this is also a path to longevity. GSM 2 has ceased to operate in at least several
+european countries and GSM 3 is bound for the same fate within the next five years. Many projects and installations will be rendered obsolete or will at least require upgrades.
+
+.Resilience Report  (_Jan 2024_) 
+[none]
+. icon:plus[role=green] icon:plus[role=green] icon:plus[role=green] Objectives still hold.    
+. icon:plus[role=green] icon:plus[role=white] icon:plus[role=white] [Checked 103 links, 47 destination URLs, 1 have errors,]
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=white] Not a TiPs (NoTiPs), at least not for me.
+
+.Lessons Learned (_Jan 2024_) 
+. Don't start a TiPs with multiple coupled sub-components. This is in fact not *one* TiPs but a whole set of TiPs.
+. Break up NoTiPs until the real TiPs show up. Projects that can be understood and tested.
+. Every TiPs contains at least one even tinier TiPs struggling to get out (;-.
+
+*Status*: on hold.
+
+== TiPs #4
+
+* https://vittali.ch/TiPs_4[Choosing another wireless microcontroller with sensors]
+
+This projects is very similar to <<TiPs_3, TiPs #3>>. However, the getting-started tools in this project have better vendor-support. I might pick up this project
+when I know more about BLE and microcontrollers.
+
+*Status*: on hold.
+
+== TiPs #3
+
+* https://vittali.ch/TiPs_3[Choosing a toolchain for a bluetooth (BLE) connected sensor]
+
+.Objectives (_Sep 2019_)
+. Learn to use bluetooth (BLE) connected microcontrollers and sensors. 
+. Learn to use https://docs.asciidoctor.org/asciidoc/latest[asciidoctor] for technical documentation, specifically for managing references and bibliography.
+
+.Building Resilience
+* Bluetooth connectivity allows to replace hardware dependent I/O (display, buttons) with software defined I/O (for example, Android apps). This strengthens flexibility and thus resilience.
+* Managing references and bibliography across related projects improves documentation coherence and thus resilience and productivity.
+
+.Resilience Report  (_Jan 2024_) 
+[none]
+. icon:plus[role=green] icon:plus[role=green] icon:plus[role=green] Objectives still hold.    
+. icon:plus[role=green] icon:plus[role=white] icon:plus[role=white] [Checked 165 links, 56 destination URLs (1 ignored), 0 have warnings or errors]
+. icon:plus[role=white] icon:plus[role=white] icon:plus[role=white] I am personally still satisfied with the documentation, except with the management of references and bibliography.
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=red] Tightly coupled to proprietary software and hardware.
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=white] Poor choice in getting-started tools.
+
+.Lessons Learned (_Jan 2024_) 
+. The chosen _SensorTag_ mini evaluation kit was utterly unsuited to get started with a complex technology like BLE. I was clearly undereducated when starting this project
+and I should have watched for example some of the excellent videos by https://www.youtube.com/@AndreasSpiess[Andreas Spiess] first. 
+It was a bad idea to start from the vendor's website.
+. Be more selectively in choosing the right tools for each TiPs. For example, the quality of https://www.youtube.com/watch?v=c9Xt6Me3mJ4[T.T.H.W - Time To Hello World] evaluation boards
+differs enormously. So does the quality of IDEs (Integrated Development Environment).
+. Choose a different toolchain to manage references and bibliography. While asciidoctor is an excellent tool, I feel that I need more help to keep track
+of all the documentation that is typically involved in microcontroller TiPs.
+
+*Status*: #failed#.
+
+== TiPs #2
+
+* https://vittali.ch/TiPs_2[Choosing a software toolchain for a cloud connected sensor]
+
+.Objectives (_Aug 2019_)
+. Learn to use cloud connected microcontrollers and sensors. 
+. Learn to use https://docs.asciidoctor.org/asciidoc/latest[asciidoctor] for technical documentation.
+
+.Building Resilience
+* The cloud as a reliable data store and application container.
+* Tools for documentation.
+
+.Resilience Report  (_Jan 2024_) 
+[none]
+. icon:plus[role=green] icon:plus[role=green] icon:plus[role=green] Objectives still hold.    
+. icon:plus[role=green] icon:plus[role=white] icon:plus[role=white]  I am personally still satisfied with the documentation. Asciidoctor was a good choice. 
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=red] Tightly coupled to proprietary software.
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=red] Conflict with the principle of Separation of Concerns.
+. icon:minus[role=red] icon:minus[role=white] icon:minus[role=white] [Checked 98 links, 52 destination URLs, 6 have errors], 5 of 6 broken links go to the vendor website, 4 of them to the support & knowledge center.
+
+.Lessons Learned (_Jan 2024_) 
+. I will never, ever, again use "free", proprietary packaged cloud services like IBM bluemix for TiPs. While this offer certainly had benefits for industrial projects,
+it produced a massive overhead of security related ceremony (many different passwords and tokens) that completed outweighed its benefits for TiPs.
+. The cloud service I used did not offer any kind of backward compatibility. After a year or so, the initial project stopped working. Worse, the documentation 
+of tools related to the service was not available anymore on the company's website.
+. The cloud service promoted the use of "quick-start" tools like https://nodered.org/[Node-RED] and a complete integrated toolchain including a hosted git repo and an application deployment service.
+This conveyed a feeling of comfort and easiness. Clearly, I fell for the https://www.youtube.com/watch?v=c9Xt6Me3mJ4[T.T.H.W - Time To Hello World] fallacy.
+As soon as I started to adapt different parts of this quick-start package, things became very difficult. For example, rather than developing my code
+in the cloud, I wanted to continue developing on my desktop. This in turn required complicated mechanisms to provide passwords from the local machine to the application deployment service.
+. Node-RED is certainly an amazing project as it promotes a modular way of coding without actually writing code. As such, it is a perfect example for a TiPs enabler. However,
+mixing code and visualization elements (dashboards) runs foul of established software design practices promoting clear separation of semantics (model) and visualization (views).
+
+*Status*: #failed#.
+
+== TiPs #1
+
+* https://vittali.ch/TiPs_1[Test automation with the Programmable Real-Time Unit (PRU) on the TI/Sitara processor]
+
+.Objectives (_Jun 2020_)
+. Build a tool to test TiPs with microcontrollers. 
+. Learn to use https://docs.asciidoctor.org/asciidoc/latest[asciidoctor] for technical documentation.
+
+.Building Resilience
+* Tools for automatic testing.
+* Tools for documentation.
+
+.Resilience Report  (_Jan 2024_) 
+[none]
+. icon:plus[role=green] icon:plus[role=green] icon:plus[role=green] Objectives still hold.    
+. icon:plus[role=green] icon:plus[role=white] icon:plus[role=white]  I am personally still satisfied with the documentation. Asciidoctor was a good choice. 
+. icon:minus[role=red] icon:minus[role=red] icon:minus[role=red] Tightly coupled to proprietary software and hardware.
+. icon:minus[role=red] icon:minus[role=white] icon:minus[role=white] [Checked 73 links, 41 destination URLs, 2 have errors].
+
+*Status*: on hold.
+
+== Contact & Imprint
+
+++++
+<form id="contactform" method="POST">
+    <input type="text" name="name" placeholder="Your name">
+    <input type="email" name="_replyto" placeholder="Your email">
+    <input type="hidden" name="_subject" value="Website contact" />
+    <textarea name="message" placeholder="Your message"></textarea>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="submit" value="Send">
+</form>
+<script>
+    var contactform =  document.getElementById('contactform');
+    contactform.setAttribute('action', '//formspree.io/' + 'vittali' + '@' + 'sunrise' + '.' + 'ch');
+</script>
+++++
+
+Peter Vittali +
+Weidenweg 1 +
+CH-4127 Birsfelden, Schweiz +
++41 61 271 89 33
+
+*Legal*: The content on this website may contain technical inaccuracies or typographical errors
+and may be changed or updated without notice. The authors of this website may also make improvements and/or changes to the content at any time without notice.
+The authors of vittali.ch assume no responsibility regarding the accuracy of the content and use of the content is at the recipients own risk.
+The authors of vittali.ch provide no assurances that any reported problems with any content will be resolved.
