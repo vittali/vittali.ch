@@ -11,11 +11,22 @@ NOTE: This tutorial has been tested on Linux Mint 18.
 There are many ways to install Node-RED. I choose the
 https://github.com/nodesource/distributions/blob/master/README.md[following]:
 
-[listing]
+[source,bash]
+----
 $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
-$ sudo npm install -g node-red
+$ sudo npm install -g node-red <1>
 $ npm install -g mqtt
+----
+<1> This might result in:
+{sp} +
+`gyp ERR! stack Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/node-red/node_modules/bcrypt/.node-gyp'`
+{sp} +
+I used the `--unsafe-perm` option to fix the https://github.com/nodejs/node-gyp/issues/1619[problem]:
+{sp} +
+`$ sudo npm install -g --unsafe-perm node-red`
+{sp} +
+
 
 The later node module is required for the mqtt test client.
 
