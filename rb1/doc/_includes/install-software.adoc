@@ -16,7 +16,7 @@ https://github.com/nodesource/distributions/blob/master/README.md[following]:
 $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 $ sudo apt-get install -y nodejs
 $ sudo npm install -g node-red <1>
-$ npm install -g mqtt
+$ sudo npm install -g mqtt <2>
 ----
 <1> This might result in:
 {sp} +
@@ -25,6 +25,11 @@ $ npm install -g mqtt
 I used the `--unsafe-perm` option to fix the https://github.com/nodejs/node-gyp/issues/1619[problem]:
 {sp} +
 `$ sudo npm install -g --unsafe-perm node-red`
+{sp} +
+<2> since the test client uses the `require` mechanism and you installed the `mqtt` module globally,
+your `NODE_PATH` must include the global `node_modules` directory tree, for example:
+{sp} +
+`export NODE_PATH=/usr/lib/node_modules`
 {sp} +
 
 
