@@ -1,0 +1,18 @@
+
+== References
+
+[bibliography]
+=== Prozessor SDK
+
+- [[[r10]]]: https://developer.ibm.com/tutorials/category/iot/[IoT – IBM Developer]
+
+[bibliography]
+=== Yocto
+
+- [[[r1]]]: https://developer.ibm.com/tutorials/cl-mqtt-bluemix-iot-node-red-app/[Explore MQTT and the Internet of Things service – IBM Developer]
+
+
+[bibliography]
+=== Youtube tutorials
+
+- [[[r20]]]: https://docs.internetofthings.ibmcloud.com/apis/swagger/v0002/org-admin.html[IBM Watson IoT API]

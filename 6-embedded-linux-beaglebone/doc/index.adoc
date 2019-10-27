@@ -17,31 +17,5 @@ I want to set up a cross compilation toolchain for the Beaglebone Black.
 Texas Instruments (TI) is proposing the SDK based on Arago and the Yocto project.
 A general purpose setup script is provided but I want to understand some of the details.
 
-I choose to install VirtualBox 6.0.14 on a Linux Mint 19.2 Tina based on Ubuntu 18.04 LTS-based
 
-== Installing VirtualBox
-
-
-
-References
-
-CC1352P1
-
-Frequency and channel selection
-
-https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/848811
-
-
-http://www.ti.com/lit/an/swra048/swra048.pdf[ISM-Band and Short Range Device Regulatory Compliance
-Overview]
-
-CC3220SF
-
-SimpleLink™ Wi-Fi® CC3220SF wireless microcontroller LaunchPad™ development kit[http://www.ti.com/tool/CC3220SF-LAUNCHXL]
-
-CC3220SimpleLink™ Wi-Fi®LaunchPad™ DevelopmentKit Hardware[http://www.ti.com/lit/ug/swru463b/swru463b.pdf]
-
-
-Documentation Overview for SimpleLink™ CC32xx SDK[http://software-dl.ti.com/ecs/SIMPLELINK_CC32XX_SDK/3_30_01_02/exports/docs/Documentation_Overview.html]
-
-Documentation Overview for CC32XX Watson IoT Plugin[http://software-dl.ti.com/targetcontent/watsoniot/1_20_00_04/exports/watson_cc32xx_1_20_00_04/docs/Documentation_Overview.html]
+include::{includedir}/install-virtualbox.adoc[]
