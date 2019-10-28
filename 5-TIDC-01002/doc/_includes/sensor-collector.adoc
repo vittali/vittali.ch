@@ -1,0 +1,70 @@
+
+:r1: http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Sensor and Collector - TI 15.4-Stack Project Zero]
+:r2: http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit]
+
+
+== Sensor and Collector - TI 15.4-Stack Project Zero
+
+
+
+I follow the lab exercise {r1}. I use _GTKTerm_ from the Mint/Ubuntu distribution.
+
+I use two {r2} launchpads:
+
+[[hardware, hardware setup]]
+.Two CC1352P1 launch pads programmed as Sub-1 Ghz sensor and collector
+image::sensor-collector-hardware.jpg[CC1352P1]
+
+
+=== Task 0
+
+Since I want to connect the two launchpads simultaneously, I need to give each
+launchpad.footnote:[more preciously, the debug probe included on the launchpad]
+a unique serial number.
+
+==== Setting the serial number of the collector board
+
+I label the collector board (see <<hardware>>) , verify that it is the only board connected to the host
+ and set the serial number to `1`:
+
+[source, bash]
+----
+cd $CCS_INSTALLDIR/ccs910/ccs/ccs_base/common/uscif/xds110
+$ ./xdsdfu -m  <1>
+$ ./xdsdfu -s 1 -r <2>
+----
+<1> set the device into DFU mode (required)
+<2> set the serial number to _1_ and reset the device
+
+
+==== Setting the serial number of the sensor board
+
+I label the sensor board (see <<hardware>>) , verify that it is the only board connected to the host
+ and set the serial number to `2`:
+
+[source, bash]
+----
+cd $CCS_INSTALLDIR/ccs910/ccs/ccs_base/common/uscif/xds110
+$ ./xdsdfu -m  <1>
+$ ./xdsdfu -s 2 -r <2>
+----
+<1> set the device into DFU mode (required)
+<2> set the serial number to _2_ and reset the device
+
+=== Edit the target configuration
+
+Each CCS project needs to be configured such that the programs for collector and sensor are loaded to the correct launchpad:
+
+[[targetconf, target configuration]]
+.Both target configurations are populated with the choosen serial numbers (shown is the collector project).
+image::target-conf.png[target configuration]
+
+
+=== Task 1
+
+I can't set the Sub-1 Ghz Frequency to 868 Mhz as I expected,
+the only choice for the european band seems to be 863 Mhz. This might be related
+to the channel selection, see <<e2e1>>.
+
+.Configure the TI 15.4 Stack Sub 1-Ghz Frequency
+image::sensor-syscfg.png[sensor.syscfg]

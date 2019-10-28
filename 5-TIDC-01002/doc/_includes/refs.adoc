@@ -1,0 +1,23 @@
+
+== References
+
+[bibliography]
+=== CC1352P1
+
+- [[[r1]]]: http://www.ti.com/lit/an/swra048/swra048.pdf[ISM-Band and Short Range Device Regulatory Compliance Overview]
+
+[bibliography]
+=== CC3220SF
+
+- [[[r10]]]: http://www.ti.com/tool/CC3220SF-LAUNCHXL[SimpleLink™ Wi-Fi® CC3220SF wireless microcontroller LaunchPad™ development kit]
+- [[[r11]]]: http://www.ti.com/lit/ug/swru463b/swru463b.pdf[CC3220SimpleLink™ Wi-Fi®LaunchPad™ DevelopmentKit Hardware]
+- [[[r12]]]: http://software-dl.ti.com/ecs/SIMPLELINK_CC32XX_SDK/3_30_01_02/exports/docs/Documentation_Overview.html[Documentation Overview for SimpleLink™ CC32xx SDK]
+- [[[r13]]]: http://software-dl.ti.com/targetcontent/watsoniot/1_20_00_04/exports/watson_cc32xx_1_20_00_04/docs/Documentation_Overview.html[Documentation Overview for CC32XX Watson IoT Plugin]
+
+
+=== TI E2E support forum
+
+==== dicussions started by me
+
+- [[[e2e1]]]: https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/848811[Frequency and channel selection]
+* The exact frequency depends on the channel selection, see <<r1>>.
