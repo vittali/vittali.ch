@@ -24,4 +24,5 @@ I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
 
 
 include::{includedir}/sensor-collector.adoc[]
+include::{includedir}/gateway.adoc[]
 include::{includedir}/refs.adoc[]
