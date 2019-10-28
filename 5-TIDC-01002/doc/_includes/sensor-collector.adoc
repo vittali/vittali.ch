@@ -9,17 +9,17 @@
 
 I follow the lab exercise {r1}. I use _GTKTerm_ from the Mint/Ubuntu distribution.
 
-I use two {r2} launchpads:
+I use two {r2} LaunchPads:
 
 [[hardware, hardware setup]]
 .Two CC1352P1 launch pads programmed as Sub-1 Ghz sensor and collector
-image::sensor-collector-hardware.jpg[CC1352P1]
+image::sensor-collector-hardware.png[CC1352P1]
 
 
 === Task 0
 
-Since I want to connect the two launchpads simultaneously, I need to give each
-launchpad.footnote:[more preciously, the debug probe included on the launchpad]
+Since I want to connect the two LaunchPads simultaneously, I need to give each
+LaunchPad.footnote:[more preciously, the debug probe included on the LaunchPad]
 a unique serial number.
 
 ==== Setting the serial number of the collector board
@@ -53,7 +53,7 @@ $ ./xdsdfu -s 2 -r <2>
 
 === Edit the target configuration
 
-Each CCS project needs to be configured such that the programs for collector and sensor are loaded to the correct launchpad:
+Each CCS project needs to be configured such that the programs for collector and sensor are loaded to the correct LaunchPad:
 
 [[targetconf, target configuration]]
 .Both target configurations are populated with the choosen serial numbers (shown is the collector project).
@@ -68,3 +68,32 @@ to the channel selection, see <<e2e1>>.
 
 .Configure the TI 15.4 Stack Sub 1-Ghz Frequency
 image::sensor-syscfg.png[sensor.syscfg]
+
+
+=== Task 3
+
+On my host box, I select `/dev/ttyACM0` for the collector and `dev/ttyACM2` for the
+sensor virtual UART connection.
+
+As mentioned in step 6, I press and hold `Button 2` and then the `Reset` button (while Button 2 is held down), see <<hardware>>.
+
+.Collector (top) and sensor (bottom) terminal output after factory reset.
+image::terminals.png[terminal output after reset]
+
+Some of the steps 7 to 9 are also different for me:
+
+[start=7]
+. The collector starts immediately (without waiting for `Button 1`). The output is:
+
+ TI Collector
+ Started
+ Channel: 0
+
+. as described
+. the terminal output of the sensor is:
+
+
+.The terminal output differs slightly from the one shown in the project description:
+
+.Collector (top) and sensor (bottom) terminal output after the sensor joined the network.
+image::sensor-has-joined.png[sensor has joined]
