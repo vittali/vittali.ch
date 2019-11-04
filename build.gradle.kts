@@ -1,16 +1,19 @@
+import org.asciidoctor.gradle.jvm.AsciidoctorTask
+
 plugins {
-    id("org.asciidoctor.jvm.convert") version "3.0.0-alpha.3" apply false
+    id("org.asciidoctor.jvm.convert") version "2.3.0"
 }
 
 subprojects {
-    apply(plugin = "org.asciidoctor.jvm.convert")
+
     tasks {
         "asciidoctor"(AsciidoctorTask::class) {
-            sourceDir = file("docs")
+            setSourceDir(file("doc"))
             sources(delegateClosureOf<PatternSet> {
-                include("toplevel.adoc", "another.adoc", "third.adoc")
+                include("*.adoc")
             })
-            outputDir = file("build/docs")
+            //setOutputDir(file("../public/${projectDir.getName()}")
+            //setSeparateOutputDirs(false)
         }
     }
 }
