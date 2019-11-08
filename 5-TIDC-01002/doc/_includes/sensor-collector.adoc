@@ -5,8 +5,7 @@
 
 == Sensor and Collector - TI 15.4-Stack Project Zero
 
-
-
+To familiarize myself with the sensor and collector hardware, 
 I follow the lab exercise {r1}. I use _GTKTerm_ from the Mint/Ubuntu distribution.
 
 I use two {r2} LaunchPads:
