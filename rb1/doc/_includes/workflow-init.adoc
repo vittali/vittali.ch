@@ -38,10 +38,16 @@ image::stage.png[Deploy Stage]
 While the build is running, log into the IBM Cloud CLI:
 
 [listing]
+----
 $ ibmcloud login
 API endpoint: https://cloud.ibm.com
-Region: eu-gb
+Region: eu-gb <1>
 Email> <enter the email address you used to register with Bluemix>
+----
+<1> it is very important to set the correct region. Check the domain you selected
+when creating the cloud foundry app.
+
+
 
 and set the endpoint:
 

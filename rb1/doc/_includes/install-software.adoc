@@ -46,5 +46,4 @@ The IBM Cloud Command Line Interface (CLI) is a tool that lets you monitor all a
 the remote infrastructure from your local terminal.
 The most important function for this tutorial is the visualization of log files.
 
-To install IBM Cloud CLI
-https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started[start here].
+Install the IBM Cloud CLI [https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases].

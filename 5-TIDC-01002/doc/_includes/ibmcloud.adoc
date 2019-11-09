@@ -1,0 +1,21 @@
+
+=== IBM cloud demo software
+
+https://git.ti.com/cgit/tidc01002/tidc01002[compagnion git repo]
+
+
+updated node version to 8.x
+
+=> failed
+
+
+created account peter.vittali@orange.fr
+when pushing: error message mybluemix.net not found => suppressed domain field
+
+FAILED
+Could not find service IoT-Orange to bind to TIDC01002 => needed to connect first
+host is taken: delete HOST entry in manifest
+IoT-Orange is not a valid service
+
+
+https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309

@@ -19,3 +19,231 @@ A general purpose setup script is provided but I want to understand some of the 
 
 
 include::{includedir}/install-virtualbox.adoc[]
+
+
+
+== Embedded Linux on the BBB
+
+
+you must run:
+
+$ sudo dpkg-reconfigure dash
+
+and click NO to make sure that dash is not the system shell. Usually on Mint that is not the case.
+
+Based on _Mastering Embedded Linux Programming_ (2nd edition)
+
+updates:
+
+. p.166:
+
+[source]
+$ cd poky
+$ source oe-init-build-env build-nova  // works also under zsh
+$ cd ..   // the script puts you in the build-nova dir
+$ bitbake-layers create-layer meta-nova // if you don't source before, it won't find the path to exe
+$ cd build-nova
+$ bitbake-layers add-layer ../meta-nova
+$ bitbake-layers show-layers
+
+uncomment MACHINE ?= "beaglebone-yocto"
+
+$ bitbake core-image-minimal
+
+in zsh you need https://unix.stackexchange.com/questions/19530/expanding-variables-in-zsh[this]:
+
+[source]
+$ ${=CC} helloworld.c -o helloworld
+
+
+== Errrata
+
+
+
+=== Errata Type: Technical | Page: 38
+
+    $ arm-cortex_a8-linux-gnueabihf-gcc helloworld.c -ltest \
+
+    -L../libs -I../libs -o helloworld
+
+    should be
+
+    $ arm-cortex_a8-linux-gnueabihf-gcc helloworld.c -ltest \
+
+    -L../libs -I../include -o helloworld
+
+    Link for Color Images: https://www.packtpub.com/sites/default/files/downloads/MasteringEmbeddedLinuxProgrammingSecondEdition_ColorImages.pdf
+
+=== Errata Type: Code | Chapter 1 | Page 98
+    This:
+    $ cd linux-stable
+    $ make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- mrproper
+    $ make -j4 ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- zImage
+    $ make -j4 ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- modules
+    $ make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- dtbs
+
+    Should be:
+    $ cd linux-stable
+    $ make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- mrproper
+    $ make ARCH=arm versatile_defconfig
+    $ make -j4 ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- modules
+    $ make ARCH=arm CROSS_COMPILE=arm-unknown-linux-gnueabi- dtbs
+
+=== Errata Type: Code | Chapter 12 | Page 326
+    This:
+    arm-cortex_a8-linux-gnueabihf-gcc shared-mem-demo.c -lrt -pthread \
+    -o arm-cortex_a8-linux-gnueabihf-gcc
+
+    Should be:
+    arm-cortex_a8-linux-gnueabihf-gcc shared-mem-demo.c -lrt -pthread \
+    -o shared-mem-demo
+
+=== Errata Type: Code | Chapter 1 | Page 18
+    This:
+    -net nic -net use
+
+    Should Be:
+    -net nic -net user
+
+=== Errata type: Code Page no: 225
+
+    When running the script "mender-qemu" (i.e. when typing "../meta-mender/meta-mender-qemu/scripts/mender-qemu" as documented on page NNN(*), if you see an error message that includes "Block protocol 'file' doesn't support the option 'locking'", then edit ../meta-mender/meta-mender-qemu/scripts/mender-qemu as follows:
+
+    Delete ",file.locking=off" from line 60 so that it reads
+
+    QEMU_ARGS="$QEMU_ARGS -drive file=$VEXPRESS_IMG,if=sd,format=raw "
+
+    This problem only occurs with versions of qemu-system-arm before 2.10
+
+
+
+=== Chapter 2
+
+. don't forget to set the PATH env var to the gcc binary
+. p.62, use the v2019.07 branch of u-boot, `am335x_boneblack_defconfig` has been removed, use `am335x_evm_defconfig` instead.
+
+
+==== Building U-Boot
+
+to build the example with v2017 U-Boot you must change the Target Architecture -> Use specific FPU to `neon-vfpv3`
+
+see also
+https://stackoverflow.com/questions/50284222/u-boot-for-beaglebone-black-wont-build-target-cpu-does-not-support-thumb-inst
+
+otherwise you get :
+CC      arch/arm/cpu/armv7/cache_v7.o
+cc1: warning: target CPU does not support THUMB instructions
+{standard input}: Assembler messages:
+{standard input}:42: Error: selected processor does not support `dsb sy' in ARM mode
+{standard input}:46: Error: selected processor does not support `isb sy' in ARM mode
+{standard input}:240: Error: selected processor does not support `dsb sy' in ARM mode
+{standard input}:244: Error: selected processor does not support `isb sy' in ARM mode
+{standard input}:368: Error: selected processor does not support `dsb sy' in ARM mode
+{standard input}:460: Error: selected processor does not support `dsb sy' in ARM mode
+{standard input}:464: Error: selected processor does not support `isb sy' in ARM mode
+{standard input}:594: Error: selected processor does not support `dsb sy' in ARM mode
+scripts/Makefile.build:280: recipe for target 'arch/arm/cpu/armv7/cache_v7.o' failed
+make[1]: *** [arch/arm/cpu/armv7/cache_v7.o] Error 1
+Makefile:1217: recipe for target 'arch/arm/cpu/armv7' failed
+
+
+
+== SD Card
+
+$ lsblk
+use the script from the book
+
+=== Boot Ftp
+
+$ sudo apt-get install tftpd-hpa // not the _d_
+
+no need to mess with nobody and nogroup and what not. Works out of the box.
+Files go into `/var/lib/tftpboot`.
+
+=== USB Serial
+
+$ ll /sys/class/tty/ttyUSB*
+
+$ gtkterm -p /dev/ttyUSB0 -s 115200
+
+
+[source]
+$ ./create-sdcard.sh
+
+when you exit the script, you must manually unmount the two parts.
+
+[source]
+$ cat /proc/mounts
+
+for example:
+
+[source]
+$ sudo umount /dev/sde1
+
+then remount both parts so that they appear under /media/p:
+
+[source]
+$ sudo cp MLO-beaglebone-yocto-2019.01-r0 /media/p/boot/MLO
+$ sudo cp u-boot-beaglebone-yocto-2019.01-r0.img /media/p/boot/u-boot.img
+$ tar -C /media/p/rootfs -jxf nova-image-beaglebone-yocto-20190915162549.rootfs.tar.bz2
+
+=== Chapter 4
+
+p94. omitte4d setenv bootargs console ....
+
+== Processor SDK
+
+in source environment-setup
+
+change prompt
+remove export PS1
+
+PROMPT="%(?.%F{green}[linux-devkit].%F{red})❯%f "
+
+== Intro
+
+This tutorial is based on {rTI-1}.
+The project files can be cloned icon:github[link=https://github.com/vittali/vittali.ch-gst.rb2].
+
+Make sure to configure networking correctly, for example wireless and wired to the BBB, it must be on another network and routes must be configured.
+https://askubuntu.com/questions/10741/how-to-set-up-dual-wired-and-wireless-connections/11084
+
+
+
+
+Debian uses connman to manage the network, the settings in /etc/network/interfaces are ignored.
+
+NOTE:: this is not relevant, the debian thing is what is preinstalled on the eemc.
+
+[listing]
+debian@beaglebone:~$ sudo cat /var/lib/connman/ethernet_c4f3129bed5b_cable/settings
+{blank}[ethernet_c4f3129bed5b_cable]
+Name=Wired
+AutoConnect=true
+Modified=2016-01-24T22:42:30.393712Z
+IPv4.method=manual
+IPv4.netmask_prefixlen=24
+IPv4.local_address=192.168.2.2
+IPv4.gateway=192.168.1.1
+IPv6.method=auto
+IPv6.privacy=disabled
+
+
+I used the non-docker image (2)
+Do not use a USB hub to connect the BBB to the host.
+
+To be sure to auto boot from the SD card
+[listing]
+sudo dd if=/dev/zero of=/dev/mmcblk1 bs=1024 count=1024
+
+
+
+== References
+
+* http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Overview_Getting_Started_Guide.html[Processor SDK Linux]
+
+* http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/index.html[Processor SDK Linux Software Developer’s Guide]
+
+=== Training
+
+https://training.ti.com/customizing-yocto-for-production-introduction?cu=1135806[Customizing a Yocto-Based Linux Distribution for Production: Training Series]
