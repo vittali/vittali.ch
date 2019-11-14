@@ -1,0 +1,12 @@
+
+A complete ready to debug project `PRU_LED0` is available in the compagnion repo.
+
+
+
+If you encounter problems, clone the tutorial repo and compare the contents with your work:
+
+[listing]
+$ git clone git@bitbucket.org:pvittali/pvittali.bitbucket.io.git
+$ cd bbb1
+
+Import `bb1/PRU_LED0` in your workspace. The repo contains a copy of the {PSSP} (5.1.0) and is therefore self-contained.

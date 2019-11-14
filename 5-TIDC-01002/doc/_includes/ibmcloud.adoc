@@ -18,4 +18,10 @@ host is taken: delete HOST entry in manifest
 IoT-Orange is not a valid service
 
 
+=== cannot open network
+
 https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309
+
+I select the sensor_cc13x2_lp_default_863.hex image.
+
+recompile copressor image for 863 Mhz.

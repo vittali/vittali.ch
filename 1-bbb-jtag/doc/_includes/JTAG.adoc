@@ -1,4 +1,6 @@
 
+=== JTAG debugging
+
 :r1: http://www.ti.com/tool/tmdsemu200-u?keyMatch=debug%20probe%20xds200&tisearch=Search-EN-Everything[JTAG connectors]. A comprehensive comparison of different connectors with pinout. That's the beauty of standards: there are so many !
 :r2: http://www2.keil.com/coresight/coresight-connectors[Core Sight Connectors]. Yet more JTAG pinouts.
 :r3: http://www2.keil.com/coresight#jtag[CoreSight™ Technology]. JTAG signal descriptions.

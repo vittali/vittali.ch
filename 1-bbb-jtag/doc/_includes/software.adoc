@@ -1,0 +1,74 @@
+
+== Installing the software development environment
+http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html[Code Composer Studio Downloads]
+:CCS: http://processors.wiki.ti.com/index.php/Download_CCS[Code Composer Studio 8 for Linux 64bit]:PSSP: https://git.ti.com/cgit/pru-software-support-package/pru-software-support-package[PRU Software Support Package]
+http://processors.wiki.ti.com/index.php/PRU_Training:_Hands-on_Labs[PRU Training: Hands-on Labs]
+
+https://www.ti.com/tool/TI-CGT#PRU[TI code generation tools - C/C++ compilers and assembly language tools ]
+
+I installed http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html[Code Composer Studio 9.2] on Linux Mint 19.2.
+
+Code Composer Studio (CCS) still requires some 32 bit libraries:
+
+[source]
+$ sudo apt-get install libc6-i386
+
+
+* Download {CCS} ( version CCS8.0.0.00016).
+* Extract the archive and run the installer ( not as root ):
+
+[source]
+$ ./ccs_setup_linux64_8.0.0.00016.bin
+
+In Processor Support select:
+
+* Sitara AMx Processors
+* other processors for which you require support
+
+Start CCS.
+Verify that the version is CCS8.0.0.00016.
+
+From the CCS App Center, install the *PRU C compiler* option.
+
+Finally, download {PSSP} to a location of your choice. This package is optional and contains code examples.
+
+That's all. You are now ready for your first program on the PRU.
+
+== Using the demo examples from the support package
+
+Before you proceed, these were the most useful resources for me:
+
+. a http://processors.wiki.ti.com/index.php/PRU-ICSS_Debug_on_AM335x[wiki page] dedicated to bare bones PRU programming on the Sitara processor.
+
+. this audio presentation: http://software-dl.ti.com/public/hpmp/sitara/debug_pru_using_ccs/presentation_html5.html[Debug PRU with CCS].
+
+While the presentation does use a different debug probe and a previous version of CCS, it is still relevant, and in my view, the most useful resource for the task at hand.
+
+
+Note: When importing the project, uncheck `Copy project into workspace`. If the project gets copied in the workspace
+the _include_ definitions will be wrong and the project won't compile.
+
+Note: pru_  is included as a https://git-scm.com/book/en/v2/Git-Tools-Submodules[git submodule]
+
+To clone the companion repo, I need to say:
+
+$ git clone --recurse-submodules https://github.com/vittali/vittali.ch-bbb-jtag
+
+The Lab1 project
+
+You are now ready to import a demo from the {PSSP}, for example
+
+`pru-software-support-package-pru-software-support-package/pru_cape/pru_fw/PRU_LED0`
+
+* import the project into CCS and modify the Debug Configuration as shown in the resources 1. and 2.
+* click on the `Debug` icon. The debugger will stop at `main`.
+* click on `Resume` to see the LEDs blink on the PRU Cape.
+
+
+I did not modify the initialization script om 8.e rather I
+started a debug session to create a Debug Configuration. This first run will fail, because the correct initiliation script _bbb_pru_startup.js_ is missing
+(available in the companion repo). I open the Debug Configuration and select the script:
+
+
+.The JTAG header with the missing pin (key)
+image::init-script.png[init script]
