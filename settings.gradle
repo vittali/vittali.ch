@@ -1,1 +1,1 @@
-include 'toc', '1-bbb-jtag', 'rb1', 'rb2', '5-TIDC-01002', 'st1', 'st2', '6-embedded-linux-beaglebone'
+include 'toc', '1-bbb-jtag', '2-nred-bluemix', 'rb2', '5-TIDC-01002', 'st1', 'st2', '6-embedded-linux-beaglebone'

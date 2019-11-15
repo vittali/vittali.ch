@@ -1,4 +1,4 @@
-= Getting started with the Beagle Bone Black and the PRU via JTAG
+= Getting started with the BeagleBone Black and the PRU via JTAG
 :includedir: _includes
 :imagesdir: ./images
 :icons: font

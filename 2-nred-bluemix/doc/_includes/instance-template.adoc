@@ -3,10 +3,10 @@
 
 The _My-Node-RED-App_ consists of two sets of files:
 
-* files that are project agnostic and can be used without modification
+* files that are project agnostic and can be used without modification,
 * templates files that needs to be populated with project specific data, mostly access codes.
 
-These files are available in the https://bitbucket.org/pvittali/pvittali.gst.rb1/src/master/[pvittali.gst.rb1 repository].
+These files are available in the {r1}.
 
 === Project agnostic files
 
@@ -21,7 +21,7 @@ These include:
 [[pop]]
 === Project specific files
 
-These files are provided as templates and require customisation:
+These files are templates and require customisation:
 
 .template files
 [[table2]]
@@ -54,15 +54,15 @@ access code `My-Node-RED-App_vcap.json` is required only locally, and should not
 The password property in the `settings.js` file for the NR-editor access code
 should be a hash rather than a plain text string.
 
-To generate the hash, do the following.
+Generate the hash:
 
 [listing]
 $ node-red-admin hash-pw
 Password: <enter your NR-editor password>
 $2a$08$ufCvyA.kLcV4LRdCTLFsruX.ejTq1UkxiI4FLt3oLpXvs/J1dlGA.
 
-[[NRp, NR-editor password access code]]The result is the hash of your
-NR-editor password that goes into `settings.js` as we will see in a minute.
+[[NRp, NR-editor password access code]]The result is the hash of the
+NR-editor password that goes into `settings.js`.
 
 Here are some hightlights of the required changes in the `My-Node-RED-App` project directory:
 
@@ -101,12 +101,12 @@ adminAuth: {
 },
 ----
 <1> The file name containing the VCAP access code environment variable.
-<2> The NR-flow accesscode. We choose _My-Node-RED-AppCredential_.
+<2> The NR-flow accesscode. I choose _My-Node-RED-AppCredential_.
 For production code replace this with an environment variable.
-<3> The NR-editor username access code. We choose _admin_.
+<3> The NR-editor username access code. I choose _admin_.
 <4> The <<NRp>> generated in the previous step.
 
-WARNING: If you change the NR-flow access-code after the first time you run the app, there is - to my knowledge
+WARNING: If the NR-flow access-code is changed after the first app execution, there is - to my knowledge
 - no other way to apply the change than deleting the ./node_module director inside the
 project directory.
 
@@ -122,8 +122,8 @@ var client = mqtt.connect('mqtt://nhr9i3.messaging.internetofthings.ibmcloud.com
 })
 // ...
 ----
-<1> assuming orgId is *nhr9i3*, yours will be different !
-<2> the <<dat>>.
+<1> assuming orgId is *nhr9i3*, yours will be different
+<2> the <<dat>>
 <3> client identifier: d:orgId:device_type:device
 
-With all these files in the project directory we can now finish the local installation and initialize the app.
+Ready to finish the local installation and initialize the app.

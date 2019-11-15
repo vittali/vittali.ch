@@ -17,13 +17,13 @@ Copyright (C) 2019 Peter Vittali
 
 == Embedded devices
 
-* https://vittali.ch/1-bbb-jtag[Getting started with programming the Beagle Bone Black via JTAG],
+* https://vittali.ch/1-bbb-jtag[Getting started with the BeagleBone Black and the PRU via JTAG],
 https://github.com/vittali/vittali.ch-1-bbb-jtag[compagnion repo].
 
 == IoT (Internet of Things)
 
-* https://vittali.ch/rb1[RB1: Run Node-RED on the IBM bluemix cloud and receive sensor data from your things],
-https://github.com/vittali/vittali.ch-gst.rb1[git repo].
+* https://vittali.ch/2-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud],
+https://github.com/vittali/vittali.ch-2-nred-bluemix[compagnion repo].
 
 * https://vittali.ch/st1[ST1: Getting started with the TI CC2650 Sensor Tag],
 https://github.com/vittali/vittali.ch-gst.st1[git repo].
