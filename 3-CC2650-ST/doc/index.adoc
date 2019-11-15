@@ -27,7 +27,7 @@ I want to connect wireless sensors to a BLE enabled device like a smartphone or 
 
 The {rTI-1} is a tiny board based on the {rTI-2}. I like because of:
 
-* the small footprint (32 x 41 mm) allows for integration in an existing project (for example via UART)
+* the small footprint (32 x 41 mm) allowing for integration in an existing project (for example via UART)
 thus enabling BLE connectivity without having to deal with RF board design,
 * the comprehensive set of available sensors.
 
@@ -211,7 +211,7 @@ The _Duration_ tab will show the elapsed time for each log:
 .Measured durations
 image::duration.png[Duration]
 
-Ready to program and debug the SensorTag, start with the `uartecho_CC2650STK_TI` sample project.
+Ready to start the first debug session with the `uartecho_CC2650STK_TI` sample project.
 
 == Conclusion
 
