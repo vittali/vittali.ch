@@ -1,4 +1,4 @@
-= TI Design TIDC-01002: Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design
+= TI Reference Design TIDC-01002: Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design
 :includedir: _includes
 :imagesdir: ./images
 :icons: font
@@ -7,6 +7,7 @@
 :source-highlighter: highlightjs
 :sectnums:
 // refs
+:r0: https://github.com/vittali/vittali.ch-5-TIR-1002[compagnion repo]
 :r1: https://cloud.ibm.com[IBM Bluemix]
 :r2: http://www.ti.com/tool/TIDC-01002?jktype=design[SimpleLink™ Sub-1 GHz Sensor to Cloud Gateway Reference Design for TI-RTOS Systems]
 :r3: http://www.ti.com/lit/ug/tidud09a/tidud09a.pdf[TI Designs:TIDC-01002 Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design]
@@ -15,11 +16,13 @@
 icon:home[link="https://vittali.ch"]
 
 I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}, {r3}.
-The project files can be cloned from this https://github.com/vittali/vittali.ch-gst.rb3[git repo].
+
+Related source code can be cloned from the {r0}.
 I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
 
-== Getting started
+NOTE: Work in progress
 
+== Introduction
 
 include::{includedir}/sensor-collector.adoc[]
 include::{includedir}/gateway.adoc[]

@@ -1,4 +1,4 @@
-= RB2: TIDEP0084
+= TI Reference Design TIDC-01002: Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design
 :includedir: _includes
 :imagesdir: ./images
 :icons: font
@@ -7,8 +7,6 @@
 :source-highlighter: highlightjs
 :sectnums:
 
-// Refs:
-
 :r1: https://cloud.ibm.com[IBM Bluemix]
 :r2: http://www.ti.com/tool/TIDEP0084?jktype=design[Sub-1 GHz Sensor to Cloud Industrial IoT Gateway Reference Design for Linux Systems]
 :r3: http://www.ti.com/lit/ug/tiduci9c/tiduci9c.pdf[TI Designs:TIDEP0084 Sub-1 GHz Sensor-to-Cloud Industrial Internet-of-Things (IoT) Gateway Reference Design]
@@ -16,3 +14,11 @@
 
 [abstract]
 icon:home[link="https://vittali.ch"]
+
+I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}, {r3}.
+
+== Introduction
+
+NOTE: work in progress
+
+TODO
