@@ -1,4 +1,4 @@
-= ST1: Getting started with the TI SensorTag CC2650
+= Getting started with the TI SensorTag CC2650
 :includedir: _includes
 :imagesdir: ./images
 :shared-includedir: ../../shared/doc/_includes
@@ -11,37 +11,36 @@
 :sectlinks:
 // Refs:
 // TI
+:r0: https://github.com/vittali/vittali.ch-3-CC2650-ST[compagnion repo]
 :rTI-1: http://www.ti.com/tool/CC2650STK[SimpleLink™ Bluetooth low energy/Multi-standard SensorTag CC2650STK]
 :rTI-2: http://www.ti.com/product/CC2650[CC2650F128RGZ]
 :rTI-3: http://www.ti.com/tool/CC1350STK[Simplelink CC1350 SensorTag Bluetooth and Sub-1GHz Long Range Wireless Development Kit]
 :rTI-4: https://e2e.ti.com[TI E2E™ support forums]
 :rTI-5: http://www.ti.com/tool/TMDSEMU110-U[XDS110 JTAG Debug Probe]
 :rTI-6: https://www.ti.com/tool/CC-DEVPACK-DEBUG[SimpleLink SensorTag Debugger DevPack]
+:r8: https://vittali.ch/4-CC1350-ST[Getting started with the TI SensorTag CC1350]
 
 [abstract]
 icon:home[link="https://vittali.ch"]
 
-The {rTI-1} is a tiny board based on the {rTI-2}.
-I think it is interesting for hobby/maker projects,
-prototypes and experimenation for at least two reasons:
+I want to connect wireless sensors to a BLE enabled device like a smartphone or tablett.
 
-* the small footprint (32 x 41 mm) allows for integration in an existing project (for example via UART) thus enabling BLE connectivity without having to deal with RF board design,
-* a variety of sensors that can be wirelessly interacted with via apps.
+The {rTI-1} is a tiny board based on the {rTI-2}. I like because of:
 
-The name _CC2650STK_ is the official part number for the development kit, I will also use the term _SensorTag_ hereafter.
-A similar product {rTI-3} with dual-band capability is also available that I discuss in another https://vittali.ch/st2[tutorial]. I recommend the CC1350STK for new designs
-for reasons discussed hereafter.
+* the small footprint (32 x 41 mm) allows for integration in an existing project (for example via UART)
+thus enabling BLE connectivity without having to deal with RF board design,
+* the comprehensive set of available sensors.
 
-The project files for this Getting Started Tutorial (gst) can be cloned from this https://github.com/vittali/vittali.ch-gst.st1[git repo].
-Here is an https://vittali.ch[overwiew] of related projects.
+Getting started with the SensorTag wasn't as easy as I hoped
+and this is a write-up of the problems I encountered.
 
-== Objective
+Source code related to this note can be cloned from the {r0}.
 
-Getting started with the SensorTag wasn't as easy as I hoped and this tutorial is basically a write-up of the problems I encountered.
-The goal is to assist new users in familiarizing themselves with some of the idiosyncrasies and shortcomings of the SensorTag.
-Some of the discussion threads on the {rTI-4} might also be useful for existing users during troubleshooting.
+== Introduction
 
-Of course, by the time you are reading this tutorial (written in Sep. 2019), some or all of the bugs mentioned might already be corrected.
+The name _CC2650STK_ is the official part number for the development kit, also called _SensorTag_ hereafter.
+A similar product {rTI-3} with dual-band capability is also available {r8}.
+I prefer the CC1350STK for reasons discussed later.
 
 == Problems
 
@@ -58,7 +57,7 @@ The problems encountered and discussed on the {rTI-4} revolve around several top
 
 == Hardware Preparation and Requirements
 
-For this is tutorial, I was using the following hardware:
+I used the following hardware:
 
 * the {rTI-1}
 * the {rTI-5} (not supported, as it turned out) and the {rTI-6}
@@ -101,7 +100,7 @@ WARNING: Remove the coin battery, it will be quickly drained by the debug connec
 
 == Loading the sample project
 
-I will use the _uartecho_CC2650STK_ project because it not only serves as a basic sanity check for the environment but also as a proof
+Use the _uartecho_CC2650STK_ project because it not only serves as a basic sanity check for the environment but also as a proof
 that the serial-over-USB host-target connection works as expected.
 
 Download and install the project from the Resource Explorer:
@@ -127,19 +126,20 @@ And the debug settings:
 .Debug settings
 image::debug-settings.png[debug settings]
 
-You are now ready to start the first debug session. Before doing so, I show how to activate the System Analyzer. This is an optional step and applies to all
-TI-RTOS based projects, not only to SensorTag projects.
+Ready to start the first debug session. Before doing so, I activate the System Analyzer.
+This is an optional step and applies to all TI-RTOS based projects, not only to SensorTag projects.
 
 [[logging]]
 == Using the System Analyzer
 
 The `README.md` file of the sample project claims that the System Analyzer Unit is enabled.
-This is not correct and if you open the System Analyzer (Tools -> System Analyzer -> Duration in the Debug Perspective), you get this:
+This is not correct and opening the System Analyzer
+(Tools -> System Analyzer -> Duration in the Debug Perspective), will show an error message:
 
-.System Analyzer
+.System Analyzer unconfigured
 image::DAC.png[Analysis Configuration]
 
-We first need to enable the System Analyzer by modifying the TI-RTOS config file `uartecho.cfg` <<e2e7>>:
+The System Analyzer must be enabled by modifying the TI-RTOS config file `uartecho.cfg` <<e2e7>>:
 
 .uartecho.cfg
 [source,javascript]
@@ -211,15 +211,14 @@ The _Duration_ tab will show the elapsed time for each log:
 .Measured durations
 image::duration.png[Duration]
 
-You are now ready to program and debug the SensorTag.
+Ready to program and debug the SensorTag, start with the `uartecho_CC2650STK_TI` sample project.
 
 == Conclusion
 
 The SensorTag is not a full blown development kit and there is a reason why the product page {rTI-1} recommends to use a suitable LaunchPad rather than the SensorTag for development.
 However, the corresponing LaunchPad has a much larger footprint and no sensors, therefore the SensorTag can provide value for small projects and prototypes where BLE connectivity and additional sensors are desirable.
-If possible, use the {rTI-3} for new applications. This kit has the same footprint, similar sensors and is part of the SimpleLink product family.
-It therefore enjoys better documentation, tool support and Linux support for the BLE stack.
-I introduce the CC1350 SensorTag in a companion https://vittali.ch/st2[tutorial].
+I prefer to use the {rTI-3}. This kit has the same footprint, similar sensors and is part of the SimpleLink product family.
+It therefore enjoys much better documentation, tool support and Linux support for the BLE stack, see {r8}.
 
 == References
 

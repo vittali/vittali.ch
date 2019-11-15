@@ -25,11 +25,11 @@ https://github.com/vittali/vittali.ch-1-bbb-jtag[compagnion repo].
 * https://vittali.ch/2-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud],
 https://github.com/vittali/vittali.ch-2-nred-bluemix[compagnion repo].
 
-* https://vittali.ch/st1[ST1: Getting started with the TI CC2650 Sensor Tag],
-https://github.com/vittali/vittali.ch-gst.st1[git repo].
+* https://vittali.ch/3-CC2650-ST[Getting started with the TI CC2650 Sensor Tag],
+https://github.com/vittali/vittali.ch-3-CC2650-ST[git repo].
 
-* https://vittali.ch/st2[ST2: Getting started with the TI CC1350 Sensor Tag],
-https://github.com/vittali/vittali.ch-gst.st2[git repo].
+* https://vittali.ch/4-CC1350-ST[Getting started with the TI CC1350 Sensor Tag],
+https://github.com/vittali/vittali.ch-4-CC1350-ST[git repo].
 
 == Abbreviations
 
