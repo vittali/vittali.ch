@@ -4,10 +4,8 @@
 :toc: left
 :docinfo: shared-head
 
-Notes on small hobby projects in the field sofware development, electronics design and embedded devices.
+Notes on small hobby experiments in software development, electronic design and embedded devices.
 
-In addition to the https://github.com/vittali/vittali.ch[documentation repo],
-each project has its compagnion github repo with source code and supporting material.
 Please use the github issue tracker to provide feedback and corrections.
 
 If not otherwise stated, this work is licensed under the terms of the MIT license.
@@ -17,28 +15,16 @@ Copyright (C) 2019 Peter Vittali
 
 == Embedded devices
 
-* https://vittali.ch/1-bbb-jtag[Getting started with the BeagleBone Black and the PRU via JTAG],
-https://github.com/vittali/vittali.ch-1-bbb-jtag[compagnion repo].
+* https://vittali.ch/1-bbb-jtag[Getting started with the BeagleBone Black and the PRU via JTAG]
 
 == IoT (Internet of Things)
 
-* https://vittali.ch/2-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud],
-https://github.com/vittali/vittali.ch-2-nred-bluemix[compagnion repo].
+* https://vittali.ch/2-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud]
 
-* https://vittali.ch/3-CC2650-ST[Getting started with the TI CC2650 Sensor Tag],
-https://github.com/vittali/vittali.ch-3-CC2650-ST[git repo].
+* https://vittali.ch/3-CC2650-ST[Getting started with the TI CC2650 Sensor Tag]
 
-* https://vittali.ch/4-CC1350-ST[Getting started with the TI CC1350 Sensor Tag],
-https://github.com/vittali/vittali.ch-4-CC1350-ST[git repo].
+* https://vittali.ch/4-CC1350-ST[Getting started with the TI CC1350 Sensor Tag]
 
-== Abbreviations
-
-IoT:: internet of things
-TI:: Texas Instruments
-RB:: Node-Red on Bluemix
-BBB:: Beagle Bone Black
-BLE:: Bluetooth Low Energy
-MCU:: microcontroller
 
 == Contact & Impressum
 
