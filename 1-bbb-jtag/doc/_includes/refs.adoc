@@ -25,7 +25,9 @@
 the main entry point to PRU related resources.
 - [[[r23]]] http://processors.wiki.ti.com/index.php/PRU_Training:_Hands-on_Labs[Hands-on Labs]. Practical examples on PRU programming. Not sure if outdated ??
 - [[[r24]]] http://catch22.eu/beaglebone/beaglebone-pru-c/[PRU C code ]. A very good introduction to C programming on the PRU.
-- [[[r25]]] http://software-dl.ti.com/public/hpmp/sitara/debug_pru_using_ccs/presentation_html5.html[Debug PRU with CCS]. Start here to learn to use CCS with the PRU.
+- [[[r25]]] http://software-dl.ti.com/public/hpmp/sitara/debug_pru_using_ccs/presentation_html5.html[Debug PRU with CCS].
+- [[[r26]]] http://processors.wiki.ti.com/index.php/PRU-ICSS_Debug_on_AM335x[wiki page]. Dedicated to bare bones PRU programming on the Sitara processor. Very useful to get started.
+- [[[r27]]] http://software-dl.ti.com/public/hpmp/sitara/debug_pru_using_ccs/presentation_html5.html[Debug PRU with CCS]. Audio presentation, very useful to get started.
 
 [bibliography]
 === Debug hardware

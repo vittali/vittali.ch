@@ -11,9 +11,7 @@ pitch connectors and ribbon cable (not tested) :
 https://www.digikey.de/product-detail/de/samtec-inc/FFSD-05-D-02.00-01-N/SAM8217-ND/1106576[1], https://www.digikey.de/product-detail/de/samtec-inc/FFSD-05-D-06.00-01-N/SAM8218-ND/1106577[2], https://www.digikey.de/product-detail/de/samtec-inc/FTSH-105-01-L-DV-K/SAM8799-ND/1875039[3],
 https://www.digikey.de/product-detail/de/samtec-inc/FTSH-110-01-L-DV-K/SAM8803-ND/2642229[4].
 
-You would also need to design and order a couple of printed circuit board adapters.
-
-If you are interested in this approach, here are a couple of useful links:
+I would also need to design and order a couple of printed circuit board adapters. Here are a couple of useful links:
 
 * {r1}
 * {r2}
