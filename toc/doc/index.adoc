@@ -1,10 +1,10 @@
-= Software & Electronics & Embedded
+= Software & Electronic & Embedded
 :nofooter:
 :icons: font
 :toc: left
 :docinfo: shared-head
 
-Notes on small hobby experiments in software development, electronic design and embedded devices.
+Notes on small hobby experiments with software, electronic design and embedded devices.
 
 Please use the github issue tracker to provide feedback and corrections.
 
@@ -16,6 +16,8 @@ Copyright (C) 2019 Peter Vittali
 == Embedded devices
 
 * https://vittali.ch/1-bbb-jtag[Getting started with the BeagleBone Black and the PRU via JTAG]
+
+* https://vittali.ch/8-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud]
 
 == IoT (Internet of Things)
 
