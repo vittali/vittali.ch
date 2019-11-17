@@ -11,10 +11,15 @@ buildscript {
 task finalize {
     //dependsOn subprojects.asciidoctor
     doLast {
-        copy {
+      copy {
         from 'public/toc'
         into "public"
         include 'index.html'
+      }
+      copy {
+        from 'shared/doc/stylesheets'
+        into "public"
+        include '*.css'
       }
       copy {
         from "public"
