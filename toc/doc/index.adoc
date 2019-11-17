@@ -18,8 +18,6 @@ Copyright (C) 2019 Peter Vittali
 
 * https://vittali.ch/1-bbb-jtag[Getting started with the BeagleBone Black and the PRU via JTAG]
 
-* https://vittali.ch/8-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud]
-
 == IoT (Internet of Things)
 
 * https://vittali.ch/2-nred-bluemix[Getting started with Node-RED and the IBM bluemix cloud]
