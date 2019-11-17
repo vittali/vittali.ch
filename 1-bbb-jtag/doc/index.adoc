@@ -5,6 +5,7 @@
 :toc: left
 :nofooter:
 :source-highlighter: highlightjs
+:docinfo: shared-head
 :sectnums:
 // refs
 :r1: https://github.com/vittali/vittali.ch-1-bbb-jtag[compagnion repo]
@@ -16,10 +17,10 @@
 [abstract]
 icon:home[link="https://vittali.ch"]
 
-I want to program the Programmable Real-Time Unit (icon:tag[role="ct"]PRU) <<r22>>
+I want to program the Programmable Real-Time Unit (PRU) <<r22>>
 available on the Texas Instruments {r2} via a JTAG debug connection.
 I use a "bare metal" {r3} without a bootloader and therefore without running Linux.
-The goal is to use the icon:tag[role="ct"]BBB in unit testing
+The goal is to use the BBB in unit testing
 embedded software on microcontrollers (MCU) where the BBB and the MCU under test are both controlled
 via Code Composer Studio in a common debug session. The PRU allows for deterministic and fast stimulus since it does
 not use caching or interrupts that could affect the timing behavior. In the following notes, I cover the steps required
