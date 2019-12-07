@@ -1,26 +1,34 @@
 
 === IBM cloud demo software
 
-https://git.ti.com/cgit/tidc01002/tidc01002[compagnion git repo]
+I added the  https://git.ti.com/cgit/tidc01002/tidc01002[tidc01003 git repo] compagnion repo of the TI reference design
+as a git submodule <<r21>>to the {r1} of this document:
 
+[bash]
+----
+$ git submodule add https://git.ti.com/git/tidc01002/tidc01002.git
+$ git submodule update --init
+$ git remote rename origin ti
+$ git remote add origin git@github.com:vittali/vittali.ch-5-TIR-1002-tidc01002.git
+----
 
-updated node version to 8.x
+After a couple of modifications inside the `ibm_cloud_application` directory (see git log), I was able to
+push the application to the IBM cloud:
 
-=> failed
+[bash]
+----
+$ cd vittali.ch-5-TIR-1002/tidc01002/examples/ibm_cloud_application
+$ ibmcloud login
+$ ibmclound target --cf
+$ ibmcloud push --cf
+----
 
+I am unable to open the network as explained in Figure 67 of the reference document <<e2e2>>.
 
-created account peter.vittali@orange.fr
-when pushing: error message mybluemix.net not found => suppressed domain field
-
-FAILED
-Could not find service IoT-Orange to bind to TIDC01002 => needed to connect first
-host is taken: delete HOST entry in manifest
-IoT-Orange is not a valid service
 
 
 === cannot open network
 
-https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309
 
 I select the sensor_cc13x2_lp_default_863.hex image.
 

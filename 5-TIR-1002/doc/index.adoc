@@ -15,7 +15,8 @@
 [abstract]
 icon:home[link="https://vittali.ch"]
 
-I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}, {r3}.
+I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}.
+The reference document is {r3}.
 
 Related source code can be cloned from the {r0}.
 I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
