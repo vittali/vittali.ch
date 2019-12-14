@@ -15,15 +15,10 @@
 
 === TI E2E support forum
 
+[bibliography]
 ==== dicussions started by me
 
 - [[[e2e1]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/848811[Frequency and channel selection]
 * The exact frequency depends on the channel selection, see <<r1>>.
 
 - [[[e2e2]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309[]
-
-
-[bibliography]
-=== Other
-
-- [[[r21]]]

@@ -28,3 +28,4 @@ NOTE: Work in progress
 include::{includedir}/sensor-collector.adoc[]
 include::{includedir}/gateway.adoc[]
 include::{includedir}/refs.adoc[]
+include::{shared-includedir}/15_4.adoc[]

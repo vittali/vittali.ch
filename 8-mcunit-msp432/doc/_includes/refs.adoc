@@ -1,0 +1,16 @@
+
+== References
+
+[bibliography]
+=== Debug Scripting Server
+
+- [[[r10]]] http://software-dl.ti.com/ccs/esd/documents/sdto_ccs_multi-probe-debug.html#xds110[Debugging with Multiple Debug Probes]
+- [[[r11]]] https://processors.wiki.ti.com/index.php/Java_Scripting_with_DSS[Java Scripting with DSS]
+- [[[r12]]] http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html[Debug Server Scripting (DSS)]
+- [[[r13]]] http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html#dss-api[DSS API]
+* Location of the JavaDoc api documentation inside the CCS installation directory tree.
+- [[[r14]]] http://software-dl.ti.com/ccs/esd/documents/sdto_dss_loadti.html[DSS Generic Loader (loadti)]
+* A JavaScript example that shows how to use the DSS.
+- [[[r15]]] https://processors.wiki.ti.com/index.php/Breakpoint[Breakpoint]
+- [[[r16]]] http://software-dl.ti.com/ccs/esd/documents/ccs_scripting_console.html[Scripting Console]
+- [[[r17]]] https://gist.github.com/Essaam/0526c1b6818ac9296318[a simple JavaScript example script]

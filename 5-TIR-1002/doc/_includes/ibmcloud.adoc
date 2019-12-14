@@ -33,3 +33,8 @@ I am unable to open the network as explained in Figure 67 of the reference docum
 I select the sensor_cc13x2_lp_default_863.hex image.
 
 recompile copressor image for 863 Mhz.
+
+=== Debugging
+
+I copied the `sensor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg` project imported from the `simplelink_cc13x2_26x2_sdk_3_30_00_03` sdk to the `sensor` project
+in the compagnion repo.

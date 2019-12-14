@@ -65,7 +65,7 @@ the binaries I flashed in Task 1 and the one I created with CCS.
 
 === Task 6
 
-I was unable to provision the LaunchPad with the android app: the scan for deivces to configure always times out.
+I was unable to provision the LaunchPad with the android app: the scan for devices to configure always times out.
 Instead, I created a profile from the website running on the LaunchPad.
 
 Upon reset, the board connects automatically to the AP `APSchuppen`:

@@ -6,3 +6,4 @@ include 'toc',
 '5-TIR-1002',
 '6-TIR-0084'
 '7-linux-bbb'
+'8-mcunit-msp432'

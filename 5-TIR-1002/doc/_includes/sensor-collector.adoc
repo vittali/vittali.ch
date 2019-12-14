@@ -96,3 +96,11 @@ Some of the steps 7 to 9 are also different for me:
 
 .Collector (top) and sensor (bottom) terminal output after the sensor joined the network.
 image::sensor-has-joined.png[sensor has joined]
+
+=== Problems with flashing on the LaunchPad
+
+On one occasion, the collector binary flashed to the LaunchPad produced scrambled output on the terminal connection.
+I reflashed, recompiled the program, to no avail. I then used UniFlash to clear the entire flash and this solved the problem:
+
+.Clearing the flash with UniFlash
+image::erase-all.png[erase flash]

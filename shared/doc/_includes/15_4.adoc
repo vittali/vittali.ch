@@ -4,6 +4,8 @@
 [bibliography]
 ==== Technical Documents
 
+- [[[15_4-td1]]] http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_50_00_08/docs/ti154stack/ti154stack-users-guide/ti154stack/introduction.html
+
 [bibliography]
 ==== More literature
 
@@ -14,6 +16,3 @@
 ==== Software
 
 - [[[15_4-sw1]]] http://www.ti.com/tool/TI-15.4-STACK-GATEWAY-LINUX-SDK[TI 15.4-Stack Gateway Linux Software Development Kit]
-
-[bibliography]
-==== Development Tools

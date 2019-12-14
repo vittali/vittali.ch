@@ -1,0 +1,8 @@
+
+== Introduction
+
+I choose to install VirtualBox 6.0.14 on a Linux Mint 19.2 Tina (based on Ubuntu 18.04 LTS-based) host with a Linux Mint 19.2 Tina guest system.
+
+
+
+After installing the guest, I set up networking:

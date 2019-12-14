@@ -1,0 +1,32 @@
+= Test-driven development (TDD) with unit tests with the MSP432 microcontroller
+:includedir: _includes
+:imagesdir: ./images
+:shared-includedir: ../../shared/doc/_includes
+:icons: font
+:toc: left
+:nofooter:
+:source-highlighter: highlightjs
+:sectnums:
+// refs
+:r0: http://software-dl.ti.com/ccs/esd/documents/users_guide/index.html[CCS]
+:r1: http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html[DDS]
+
+[abstract]
+icon:home[link="https://vittali.ch"]
+
+Test-driven development (TDD) is a development strategy where the act of testing drives
+the development process. I always start any kind of development (be it software or electronics) with
+thinking about a way to test what I plan to do.
+Unit tests are a specific kind of test targeting the smallest piece of functionality which in my case is
+always a function. I use unit test frameworks like junit (java) and google-test (cpp) for my desktop development
+and I want to use a similar workflow for my embedded projects.
+
+This document describes an attempt to set up such a workflow using the Debug Scripting Server {r1} that is part
+of Code Composer Studio {r0} from Texas Instruments (TI).
+I demonstrate how to unit test a function executed on
+the MSP432P4111 LaunchPad featuring the MSP432 microcontroller from TI.
+
+
+
+include::{includedir}/intro.adoc[]
+include::{includedir}/refs.adoc[]
