@@ -14,3 +14,9 @@
 - [[[r15]]] https://processors.wiki.ti.com/index.php/Breakpoint[Breakpoint]
 - [[[r16]]] http://software-dl.ti.com/ccs/esd/documents/ccs_scripting_console.html[Scripting Console]
 - [[[r17]]] https://gist.github.com/Essaam/0526c1b6818ac9296318[a simple JavaScript example script]
+
+
+=== TI-RTOS
+
+- [[[r20]]] http://www.ti.com/lit/ug/spruex3t/spruex3t.pdf[SYS/BIOS (TI-RTOS Kernel) User' Guide]
+- [[[r21]]] http://dev.ti.com/tirex/explore/node?node=AInUSjhtoJZzMtC1NwsvrQ__z-lQYNj__LATEST [module ti.sysbios.knl.Clock]

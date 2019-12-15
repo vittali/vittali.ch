@@ -8,25 +8,32 @@
 :source-highlighter: highlightjs
 :sectnums:
 // refs
-:r0: http://software-dl.ti.com/ccs/esd/documents/users_guide/index.html[CCS]
-:r1: http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html[DDS]
+:r0: https://github.com/vittali/vittali.ch-8-mcunit-msp432[compagnion repo]
+
+:r1: http://software-dl.ti.com/ccs/esd/documents/users_guide/index.html[CCS]
+:r2: http://software-dl.ti.com/ccs/esd/documents/users_guide/sdto_dss_handbook.html[DDS]
+:r3: https://www.ti.com/tool/MSP-EXP432P4111?utm_source=google&utm_medium=cpc&utm_campaign=epd-mcu-simp-prodfolderdynamic-cpc-pf-google-wwe&utm_content=prodfolddynamic&ds_k=DYNAMIC+SEARCH+ADS&DCM=yes&gclid=EAIaIQobChMIzOT-k8e15gIVhobVCh2bVwbqEAAYASAAEgKCGvD_BwE&gclsrc=aw.ds[SimpleLink™ MSP432P4111 high-precision ADC MCU LaunchPad™ Development Kit]
 
 [abstract]
 icon:home[link="https://vittali.ch"]
 
 Test-driven development (TDD) is a development strategy where the act of testing drives
-the development process. I always start any kind of development (be it software or electronics) with
-thinking about a way to test what I plan to do.
-Unit tests are a specific kind of test targeting the smallest piece of functionality which in my case is
-always a function. I use unit test frameworks like junit (java) and google-test (cpp) for my desktop development
+the development process. I always start any kind of development (be it in software or in electronic design) with the
+development of a test strategy. What can't be tested doesn't exist.
+Unit tests are a specific kind of test that targets the smallest piece of functionality. In my work,
+this is usually a function. I use unit test frameworks like junit (java) and google-test (cpp) for my desktop development
 and I want to use a similar workflow for my embedded projects.
 
-This document describes an attempt to set up such a workflow using the Debug Scripting Server {r1} that is part
-of Code Composer Studio {r0} from Texas Instruments (TI).
+This document describes an attempt to set up such a workflow using the Debug Scripting Server {r2} that is part
+of Code Composer Studio {r1} from Texas Instruments (TI).
 I demonstrate how to unit test a function executed on
-the MSP432P4111 LaunchPad featuring the MSP432 microcontroller from TI.
+the {r3} featuring the MSP432P4111 microcontroller (MCU) from TI.
 
+Related source code can be cloned from the {r0}. The code is MCU agnostic, most LaunchPads from TI should work.
+I use Linux Mint 19.2 Tina, Code Composer Studio 9.2.0, java 12, gradle 5.6.2, Eclipse IDE 2019-09 R (4.13.0).
 
 
 include::{includedir}/intro.adoc[]
+include::{includedir}/hardware.adoc[]
+include::{includedir}/software.adoc[]
 include::{includedir}/refs.adoc[]

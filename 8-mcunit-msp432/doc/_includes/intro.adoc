@@ -1,8 +1,23 @@
 
 == Introduction
 
-I choose to install VirtualBox 6.0.14 on a Linux Mint 19.2 Tina (based on Ubuntu 18.04 LTS-based) host with a Linux Mint 19.2 Tina guest system.
+When I write java code for desktop applications, I hardly ever use the debugger.
+And if I feel tempted to launch a debug session, I know that something is wrong with my design.
+This is, in my view, one of the main benefits of test driven development. If I start a design
+with testability as an imperative, I usually understand what my code does and I don't need a debugger.
+Most importantly, unit testing can be automatized with build tools like gradle or maven.
+This makes regression testing easy which in turn favors refactoring and modularization efforts.
+In embedded programming, launching the debugger seems to be the default mode of work and I find this unfortunate.
+Debugging, in particular stepping through code, is a manual activity. Therefore, refactoring and other
+code improvements can't be done with confidence and require additional time and effort.
 
+To bring automatic unit tests to embedded programming, I will explore two different approaches:
 
+- CCS integrates the Debug Scripting Server (DSS) which allows to load and run programs and to set breakpoints at
+specific locations. Since DDS has bindings for several desktop programming languages, it can be driven from one of the
+existing unit test frameworks. I will use java as host language and junit as testing framework.
 
-After installing the guest, I set up networking:
+- exchange messages between the host and the embedded system under test, for example via a serial link.
+TI LaunchPads usually offer a serial connection over USB which makes this approach straightforward on any PC or laptop.
+
+Both approaches can be combined. In this document, I focus on DDS, the second approach will be discussed in another memo.   

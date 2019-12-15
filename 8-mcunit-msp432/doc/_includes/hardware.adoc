@@ -1,0 +1,21 @@
+
+== Hardware
+
+
+=== Setting the serial number of the debug probe
+
+Since I own several LaunchPads, I allocate unique serial numbers to the debug probe module that is part of most LaunchPads.
+This allows to load and run programs on several different devices during the same unit test. 
+This scenario will be discussed in a different memo.
+
+I label the debug probe on the LaunchPad with the serial number and verify that it is the only board connected to the host.
+In this case, I set the serial number to _4_
+
+[source, zsh]
+----
+cd $CCS_HOME/ccs/ccs_base/common/uscif/xds110
+$ ./xdsdfu -m  <1>
+$ ./xdsdfu -s 4 -r <2>
+----
+<1> set the device into DFU mode (required)
+<2> set the serial number to _4_ and reset the device

@@ -28,7 +28,7 @@ I label the collector board (see <<hardware>>) , verify that it is the only boar
 
 [source, bash]
 ----
-cd $CCS_INSTALLDIR/ccs910/ccs/ccs_base/common/uscif/xds110
+cd $CCS_INSTALLDIR/ccs/ccs_base/common/uscif/xds110
 $ ./xdsdfu -m  <1>
 $ ./xdsdfu -s 1 -r <2>
 ----
@@ -43,7 +43,7 @@ I label the sensor board (see <<hardware>>) , verify that it is the only board c
 
 [source, bash]
 ----
-cd $CCS_INSTALLDIR/ccs910/ccs/ccs_base/common/uscif/xds110
+cd $CCS_INSTALLDIR/ccs/ccs_base/common/uscif/xds110
 $ ./xdsdfu -m  <1>
 $ ./xdsdfu -s 2 -r <2>
 ----

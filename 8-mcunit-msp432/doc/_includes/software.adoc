@@ -1,0 +1,82 @@
+
+== Software
+
+Install CCS and set the environment variable `CCS_HOME` to the installation directory.
+For example:
+
+[source, zsh]
+----
+export $CCS_HOME = ~/ti/ccs920
+----
+
+Install recent versions of java and gradle. I like https://sdkman.io[sdkman].
+
+=== Prepare the clock project
+
+I start with the `clock` example project from the SimpleLink MSP432P4 SDK:
+
+.Download and install the `clock` example project
+image::clone-clock.png[clock example]
+
+
+The api reference for the Clock module is here:
+
+
+.module ti.sysbios.knl.Clock
+image::clock-ref.png[clock ref]
+
+
+=== Prepare the Run Configuration for the junit test
+
+For this step, the LaunchPad doesn't need to be connected.
+
+Run the unit test `Host_only_i` once. The test will fail because the required environment variables are not defined yet but
+Eclipse will create a Run Configuration `Host_only_i`.
+Open the Run Configuration and define the environment variables:
+
+.Defining environment variables in the Run Configuration
+image::runconf.png[run config]
+
+
+The case `test_env` allows to test that the environment variables are set correctly.
+Once this is confirmed, I deactivate the test, because it necessarily contains hard-coded strings
+which defy the purpose of environment variables.
+
+=== Run the test from the command line with gradle
+
+As mentioned earlier, one of the main benefits of unit tests compared to step-debugging
+(or sitting in front of an oscilloscope) is the automization of regression testing.
+Even after seemingly innocuous code modifications, I tend to run one or several tests from the command line.
+
+The code for unit testing with DSS is available for download in the {r0}.
+It is contained in two eclipse projects with gradle nature, which means that all dependencies are
+handled by gradle and that tests can be run from either the Eclipse IDE or from the command line with gradle:
+
+hotbrix.dss.api.lib:: contains implementation independent code, mainly types (interfaces) and constants (enums)
+hotbrix.dss.lib:: contains implementation dependent code based on the DDS api.
+
+These libaries depend on a various other libraries like `softbrix.lib` that I will explain in separate memos.
+If you want to dive into the code, you need to be familiar with functional programming techniques.
+I specifically recommend https://www.manning.com/books/functional-programming-in-java[Functional Programming in Java].
+
+To run the MCU agnostic tests (no need to attach a LaunchPad), I do the following:
+
+[source, zsh]
+----
+$ git clone git@github.com:vittali/vittali.ch-8-mcunit-msp432.git
+$ cd vittali.ch-8-mcunit-msp432
+$ ./gradlew hotbrix.dss.lib:check  <1>
+
+BUILD SUCCESSFUL in 5s
+16 actionable tasks: 16 up-to-date
+----
+<1> you might need to run `gradle wrapper` first.
+
+Once you have connected the LaunchPad, I can run the entire test suite:
+
+[source, zsh]
+----
+$ ./gradlew hotbrix.dss.lib:check -PMCU <1>
+----
+<1> the `build.gradle` uses the gradle property `MCU` to control which tests are excluded
+when no LaunchPad is connected. In particular, this allows to test MCU agnostic functionality on an integration server like Travis.

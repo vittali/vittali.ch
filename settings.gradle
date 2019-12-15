@@ -4,6 +4,6 @@ include 'toc',
 '3-CC2650-ST',
 '4-CC1350-ST',
 '5-TIR-1002',
-'6-TIR-0084'
-'7-linux-bbb'
+'6-TIR-0084',
+'7-linux-bbb',
 '8-mcunit-msp432'

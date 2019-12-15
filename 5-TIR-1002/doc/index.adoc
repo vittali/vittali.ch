@@ -1,6 +1,7 @@
 = TI Reference Design TIDC-01002: Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design
 :includedir: _includes
 :imagesdir: ./images
+:shared-includedir: ../../shared/doc/_includes
 :icons: font
 :toc: left
 :nofooter:
