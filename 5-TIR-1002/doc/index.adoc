@@ -12,21 +12,31 @@
 :r1: https://cloud.ibm.com[IBM Bluemix]
 :r2: http://www.ti.com/tool/TIDC-01002?jktype=design[SimpleLink™ Sub-1 GHz Sensor to Cloud Gateway Reference Design for TI-RTOS Systems]
 :r3: http://www.ti.com/lit/ug/tidud09a/tidud09a.pdf[TI Designs:TIDC-01002 Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design]
+:r4: http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AOSQDVXMohlV5LElLx5wxA__pTTHBmu__LATEST[SimpleLink CC13x2 26x2 SDK (3.40.00.02)]
 
 [abstract]
 icon:home[link="https://vittali.ch"]
 
 I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}.
-The reference document is {r3}.
+The reference document is {r3}. Related source code can be cloned from the {r0}. I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
 
-Related source code can be cloned from the {r0}.
-I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
-
-NOTE: Work in progress
+The software architecture described in the TI Design is now part of the official {r4} documentation and I will follow the recommended learning path of the
+ _SimpleLink Academy (3.30.03.00)_. However the TI Design has more details and is still a useful resources for understanding the TI 15.4 example projects.
 
 == Introduction
 
+The proposed architecture for connecting wireless sensors to the Internet is based on four components, each of which include hardware and software:
+
+. one or more sensors,
+. a collector that manages and interacts with sensors,
+. a coprocessor that combines the collector function with host communication interface
+. a gateway that relays data between an internet-based application like a webserver
+. a cloud service that allows for two way commmunication between an internet user and a set of sensors/actuators.
+
+In this memo, I recount my experiences with each of these components.
+
 include::{includedir}/sensor-collector.adoc[]
+include::{includedir}/coprocessor.adoc[]
 include::{includedir}/gateway.adoc[]
 include::{includedir}/refs.adoc[]
 include::{shared-includedir}/15_4.adoc[]

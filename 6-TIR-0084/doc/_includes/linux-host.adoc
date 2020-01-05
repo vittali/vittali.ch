@@ -1,0 +1,87 @@
+
+== Host based version
+
+
+TI 15.4-Stack - Linux Gateway Project Zero
+
+
+http://www.ti.com/tool/TI-15.4-STACK-GATEWAY-LINUX-SDK
+
+http://www.ti.com/tool/SIMPLELINK-CC13X0-SDK
+
+=== Task 3
+
+download from here http://www.ti.com/tool/TI-15.4-STACK-GATEWAY-LINUX-SDK
+
+here is the http://software-dl.ti.com/simplelink/esd/ti15.4stack_linux_x64/3.40.00.10/exports/docs/ti154stack/html/ti154stack-guide/index-linux.html[Linux TI 15.4-Stack User’s Guide]
+
+
+
+=== Intermezzo
+
+Trying to fix the port naming mess:
+
+https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+
+
+I got rid of all TI related .rules in /etc/udev/rules.d
+and added:
+
+99-my-usb-serial.rules
+
+SUBSYSTEMS=="usb",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666",SYMLINK+="ti5%E{ID_USB_INTERFACE_NUM}"
+
+this will create:
+
+5 is the serial number I gave to the coprocessor LaunchPad.
+
+/dev/t500
+/dev/t503
+
+see http://www.reactivated.net/writing_udev_rules.html#env in general
+see https://txlab.wordpress.com/2016/06/14/udev-rules-for-ttyusb-devices/ in particular which solves the disambiguaton problem.
+
+
+To find out idVendor and idProduct run
+
+
+$ udevadm info -a /dev/ttyACMx
+
+to test the rules :
+
+$ udevadm test /sys/class/tty/ttyACMx
+
+this shows the env vars ID_xxx
+
+ where x can be obtained like so:
+
+$ ls /dev/ttyACM*
+ /dev/ttyACM2  /dev/ttyACM3
+
+=== Copy the source code for the host based software
+
+I copy relevant parts from ti154stack_linux_x64_3_40_00_10 to the folder `ti154stack` inside the compagnion demo:
+
+----
+$ cd ti154stack
+$ ls
+./components
+example
+scripts
+build_all.sh
+----
+
+=== Modify collector.cfg
+
+devname = /dev/ti500
+// not available config-percentfilter OxOff
+config-phy-id 131
+config-scan-duration 5
+
+
+ === Configuring the demo program
+
+ in bin/collector.cfg;
+
+	devname = /dev/ti500
+ 	config-phy-id = 131 // 863 Long Range

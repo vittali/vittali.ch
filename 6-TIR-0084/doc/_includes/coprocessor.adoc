@@ -1,0 +1,27 @@
+
+
+== The Coprocessor
+
+The coprocessor runs the TI 15.4 stack and handles the wireless communication with the sensor nodes.
+It communicates with the host (PC, BBB) via a serial port.
+
+=== Copy the example project
+
+I import the `coprocessor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg` into the CCS workspace as described in the
+SimpleLink CC13x2 26x2 SDK (3.40.00.02) documentation of the
+http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Sensor and Collector - TI 15.4-Stack Project Zero]
+
+
+Within CCS, I then copy the project into {r0}, with the following abbreviated names:
+
+. coprocessor-usb
+
+The coprocessor is configured to communicate with the host via a serial-USB connection.
+In another https://www.vittali.ch/5-TIR-1002[project], the coprocessor is configured to communicate with
+an embedded gateway board directly via UART pins.
+
+
+=== Setting the serial number of the gateway on-board debug probe.
+
+The procedure for setting the serial number has been explained here ??. I choose to set the serial number to *5*.
+The serial port will therefore be available under  `/dev/ti500`.

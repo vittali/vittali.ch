@@ -1,14 +1,13 @@
 
-:r1: http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Sensor and Collector - TI 15.4-Stack Project Zero]
-:r2: http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit]
-
+:r11: http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Sensor and Collector - TI 15.4-Stack Project Zero]
+:r12: http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit]
 
 == Sensor and Collector - TI 15.4-Stack Project Zero
 
 To familiarize myself with the sensor and collector hardware,
 I follow the lab exercise {r1}. I use _GTKTerm_ from the Mint/Ubuntu distribution.
 
-I use two {r2} LaunchPads:
+I use two {r12} LaunchPads:
 
 [[hardware, hardware setup]]
 .Two CC1352P1 launch pads programmed as Sub-1 Ghz sensor and collector
@@ -49,6 +48,22 @@ $ ./xdsdfu -s 2 -r <2>
 ----
 <1> set the device into DFU mode (required)
 <2> set the serial number to _2_ and reset the device
+
+=== Copy the example projects
+
+I import the following projects into the CCS workspace as described in the
+SimpleLink CC13x2 26x2 SDK (3.40.00.02) documentation of the {r12}
+
+. sensor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
+. collector_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
+. coprocessor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
+
+Within CCS, I then copy the projects into {r0}, with the following abbreviated names:
+
+. sensor
+. collector
+. coprocessor
+
 
 === Edit the target configuration
 

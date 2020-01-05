@@ -7,10 +7,13 @@
 :source-highlighter: highlightjs
 :sectnums:
 
+:r0: https://github.com/vittali/vittali.ch-6-TIR-0084[compagnion repo]
 :r1: https://cloud.ibm.com[IBM Bluemix]
 :r2: http://www.ti.com/tool/TIDEP0084?jktype=design[Sub-1 GHz Sensor to Cloud Industrial IoT Gateway Reference Design for Linux Systems]
 :r3: http://www.ti.com/lit/ug/tiduci9c/tiduci9c.pdf[TI Designs:TIDEP0084 Sub-1 GHz Sensor-to-Cloud Industrial Internet-of-Things (IoT) Gateway Reference Design]
+:r4: http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_40_00_10/docs/ti154stack/ti154stack-users-guide/ti154stack/linux-index.html[TI 15.4-Stack Linux SDK]
 
+:r5: http://software-dl.ti.com/lprf/simplelink_cc13x0_sdk/1_30_00_06/exports/docs/ti154stack/ti154stack-sdg/ti154stack-sdg/index.html[TI 15.4-Stack Software Developer’s Guide]
 
 [abstract]
 icon:home[link="https://vittali.ch"]
@@ -19,6 +22,13 @@ I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructu
 
 == Introduction
 
-NOTE: work in progress
 
-TODO
+The original ref design is based on the BeagleBone Black (BBB).
+
+This design is now available in the mainstream
+http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=ADuSIrFg2kUHlTd9Kp0MqQ__pTTHBmu__LATEST[TI 15.4-Stack - Linux Gateway Project Zero ]
+of the SimpleLink CC13x2 26x2 SDK. There is a BBB based version and a Linux PC host based version.
+
+In this project, I will look at the PC based version, the BBB based version will follow later.
+
+In either case, a _coprocessor_ based on a http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit] is used.

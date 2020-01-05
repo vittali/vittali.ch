@@ -5,12 +5,12 @@
 :r4: http://www.ti.com/lit/ug/swru461b/swru461b.pdf[CC3220 SimpleLink™ Wi-Fi® and Internet of Things Solution,a Single-Chip Wireless MCU Getting Started Guide]
 == Gateway
 
-To familiarize myself with the gateway hardware,
+To familiarize myself with the gateway hardware {r2},
 I follow the lab exercise {r1}.
 
 === Setting the serial number of the gateway on-board debug probe.
 
-This is the same procedure as in the previous chapter. I choose to the the serial number to *3*.
+This is the same procedure as in the previous chapter. I choose to set the serial number to *3*.
 
 === Task 1
 
