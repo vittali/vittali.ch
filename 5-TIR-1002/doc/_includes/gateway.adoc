@@ -1,12 +1,11 @@
 
-:r1: http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Meet the CC3235x LaunchPad Development Kit]
+:r1: http://dev.ti.com/tirex/explore/node?devtools=CC3220SF-LAUNCHXL&node=AMbaIpevqf00fzNR.N96jg__fc2e6sr__LATEST[Meet the CC3220x LaunchPad Development Kit]
 :r2: http://www.ti.com/tool/CC3220SF-LAUNCHXL[SimpleLink™ Wi-Fi® CC3220SF wireless microcontroller LaunchPad™ development kit]
 :r3: http://www.ti.com/lit/ug/swru463b/swru463b.pdf[CC3220 SimpleLink™ Wi-Fi® LaunchPad™ DevelopmentKit Hardware]
 :r4: http://www.ti.com/lit/ug/swru461b/swru461b.pdf[CC3220 SimpleLink™ Wi-Fi® and Internet of Things Solution,a Single-Chip Wireless MCU Getting Started Guide]
 == Gateway
 
-To familiarize myself with the gateway hardware {r2},
-I follow the lab exercise {r1}.
+To familiarize myself with the gateway hardware {r2}, I follow the lab exercise {r1}.
 
 === Setting the serial number of the gateway on-board debug probe.
 
@@ -73,3 +72,13 @@ Upon reset, the board connects automatically to the AP `APSchuppen`:
 [[auto-connect-ap]]
 .Provisioning via internal webserver seems to be succesfull.
 image::sta-connect-to-AP.png[STA connects to AP]
+
+
+
+=== Recompiling from source
+
+import `15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs` from vittali.ch-5-TIR-1002/tidc01002/examples/cc3220sf_gateway_app/15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs
+
+where vittali.ch-5-TIR-1002 is the compagnion repo and tidc01002 the source repo of the TI Design ( a git submodule)
+
+/media/p/nuage/dev/ti/ccs920/simplelink_cc32xx_sdk_3_30_01_02/source/ti/posix/ccs

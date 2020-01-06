@@ -32,7 +32,7 @@ I am unable to open the network as explained in Figure 67 of the reference docum
 
 I select the sensor_cc13x2_lp_default_863.hex image.
 
-recompile copressor image for 863 Mhz.
+recompile coprocessor image for 863 Mhz.
 
 === Debugging
 

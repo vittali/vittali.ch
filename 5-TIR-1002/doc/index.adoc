@@ -38,5 +38,6 @@ In this memo, I recount my experiences with each of these components.
 include::{includedir}/sensor-collector.adoc[]
 include::{includedir}/coprocessor.adoc[]
 include::{includedir}/gateway.adoc[]
+include::{includedir}/ibmcloud.adoc[]
 include::{includedir}/refs.adoc[]
 include::{shared-includedir}/15_4.adoc[]
