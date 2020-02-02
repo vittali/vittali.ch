@@ -4,7 +4,7 @@
 I added the  https://git.ti.com/cgit/tidc01002/tidc01002[tidc01003 git repo] compagnion repo of the TI reference design
 as a git submodule <<r21>>to the {r1} of this document:
 
-[bash]
+[source,bash]
 ----
 $ git submodule add https://git.ti.com/git/tidc01002/tidc01002.git
 $ git submodule update --init
@@ -15,7 +15,7 @@ $ git remote add origin git@github.com:vittali/vittali.ch-5-TIR-1002-tidc01002.g
 After a couple of modifications inside the `ibm_cloud_application` directory (see git log), I was able to
 push the application to the IBM cloud:
 
-[bash]
+[source,bash]
 ----
 $ cd vittali.ch-5-TIR-1002/tidc01002/examples/ibm_cloud_application
 $ ibmcloud login
