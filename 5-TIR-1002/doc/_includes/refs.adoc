@@ -22,3 +22,5 @@
 * The exact frequency depends on the channel selection, see <<r1>>.
 
 - [[[e2e2]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309[]
+
+- [[[e2e3]]] https://e2e.ti.com/support/wireless-connectivity/sub-1-ghz/f/156/t/855309[]

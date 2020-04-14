@@ -1,0 +1,121 @@
+
+== Preparation
+
+Two sets of problems slowed me down:
+
+. disambiguation problems that arise when several LaunchPads are connected simultaneously to the same host computer
+. connections problems that prevents a program from being flashed to the MCU
+
+=== Disambiguating LaunchPads
+
+For this TI Design, at least two LaunchPads are conveniently connected simultaneously during programming and testing:
+
+. When programming a LaunchPad with CCS, the flash utility must know which LaunchPad is supposed to receive the binary
+. When testing the application components, a user terminal session must know which serial port corresponds to each LaunchPad
+
+==== Setting a unique serial number for each LaunchPad.
+
+The first step is to give each LaunchPad.footnote:[more precisely, the debug probe included on the LaunchPad]
+a unique serial number.
+
+I first label the LaunchPad board (see <<hardware>>) with the desired unique serial number (a non negative integer).
+I then connect the LaunchPad (and only this one) to the host and use the `xdsdfu` utility provided by TI
+to write the choosen number to the LaunchPad. Here is an example session:
+
+[source, bash]
+----
+cd $CCS_INSTALLDIR/ccs/ccs_base/common/uscif/xds110
+$ ./xdsdfu -e  <1>
+
+USB Device Firmware Upgrade Utility
+Copyright (c) 2008-2019 Texas Instruments Incorporated.  All rights reserved.
+
+Scanning USB buses for supported XDS110 devices...
+
+
+<<<< Device 0 >>>>
+
+VID: 0x0451    PID: 0xbef3
+Device Name:   XDS110 Embed with CMSIS-DAP
+Version:       3.0.0.5
+Manufacturer:  Texas Instruments
+Serial Num:    6
+Mode:          Runtime
+Configuration: Standard
+
+Found 1 device.
+
+$ ./xdsdfu -m  <2>
+$ ./xdsdfu -s 1 -r <3>
+----
+<1> enumerate (list) all currently connected devices. Only one device must be connected at this time.
+<2> set the device into DFU mode (required)
+<3> set the serial number to _1_ (replacing _6_) and reset the device
+
+The new serial number is persistently stored.
+
+==== Targeting a serial number in a CCS project
+
+Each CCS contains a target configuration file with the extension `*.ccxml`.
+
+The connection properties page needs to be populated with the serial number of the target LaunchPad:
+
+[[targetconf, target configuration]]
+.Both target configurations are populated with the choosen serial numbers (shown is the collector project).
+image::target-conf.png[target configuration]
+
+=== Controlling serial port enumeration
+
+After the installation of CCS, a driver installation script must be run to complete the installation.
+Under linux, the script `$CCS_HOME/ccs/ccs_base/common/uscif/install/ti_permissions_install.sh` will install the `udev` rules file `71-ti-permissions.rules` under
+`/etc/udev/rules.d`.
+
+When connect a LaunchPad to the host via USB, `udev` will load the required driver and allocate two port names, for example `ttyACM0` and `ttyACM1`.
+The first one is the one I need to choose in my terminal host program.
+
+A second LaunchPad will then enumerate as `ttyACM2` and `ttyACM3`.
+
+The problem is, that if I disconnect/reconnect a LaunchPad - something that happens during development work - the port name will be different.
+This is extremely annoying as I am forced to discover the new port name by trial and error. It also prevents me from using default configurations for my terminal program.
+
+Trying to fix the port naming mess:
+
+https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+
+
+I got rid of all TI related .rules in /etc/udev/rules.d
+and added:
+
+99-my-usb-serial.rules
+
+SUBSYSTEMS=="usb",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666",SYMLINK+="ti5%E{ID_USB_INTERFACE_NUM}"
+
+this will create:
+
+5 is the serial number I gave to the coprocessor LaunchPad.
+
+/dev/ti500
+/dev/ti503
+
+see http://www.reactivated.net/writing_udev_rules.html#env in general
+see https://txlab.wordpress.com/2016/06/14/udev-rules-for-ttyusb-devices/ in particular which solves the disambiguaton problem.
+
+
+To find out idVendor and idProduct run
+
+
+$ udevadm info -a /dev/ttyACMx
+
+to test the rules :
+
+$ udevadm test /sys/class/tty/ttyACMx
+
+this shows the env vars ID_xxx
+
+ where x can be obtained like so:
+
+$ ls /dev/ttyACM*
+ /dev/ttyACM2  /dev/ttyACM3
+
+
+=== Connection problems

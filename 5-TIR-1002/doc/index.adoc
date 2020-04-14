@@ -22,19 +22,23 @@ The reference document is {r3}. Related source code can be cloned from the {r0}.
 
 The software architecture described in the TI Design is now part of the official {r4} documentation and I will follow the recommended learning path of the
  _SimpleLink Academy (3.30.03.00)_. However the TI Design has more details and is still a useful resources for understanding the TI 15.4 example projects.
+ More importantly, part of the software - the gateway project - is not available in the SDK and must be cloned from a git repository hosted by TI.
+
+NOTE: This memo is work in progress. Currently, I am unable to complete the TI Design. A support request on the TI E2E support forum is pending.
 
 == Introduction
 
 The proposed architecture for connecting wireless sensors to the Internet is based on four components, each of which include hardware and software:
 
-. one or more sensors,
-. a collector that manages and interacts with sensors,
-. a coprocessor that combines the collector function with host communication interface
+. one or more sensors
+. a collector that manages and interacts with sensors
+. a coprocessor that combines the collector function with a host communication interface
 . a gateway that relays data between an internet-based application like a webserver
-. a cloud service that allows for two way commmunication between an internet user and a set of sensors/actuators.
+. a cloud service that allows for two way commmunication between an internet user and a set of sensors/actuators
 
 In this memo, I recount my experiences with each of these components.
 
+include::{includedir}/preparation.adoc[]
 include::{includedir}/sensor-collector.adoc[]
 include::{includedir}/coprocessor.adoc[]
 include::{includedir}/gateway.adoc[]

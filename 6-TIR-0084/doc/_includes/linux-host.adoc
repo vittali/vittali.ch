@@ -35,8 +35,8 @@ this will create:
 
 5 is the serial number I gave to the coprocessor LaunchPad.
 
-/dev/t500
-/dev/t503
+/dev/ti500
+/dev/ti503
 
 see http://www.reactivated.net/writing_udev_rules.html#env in general
 see https://txlab.wordpress.com/2016/06/14/udev-rules-for-ttyusb-devices/ in particular which solves the disambiguaton problem.
