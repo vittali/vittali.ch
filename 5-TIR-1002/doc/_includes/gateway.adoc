@@ -7,10 +7,6 @@
 
 To familiarize myself with the gateway hardware {r52}, I follow the lab exercise {r51}.
 
-=== Setting the serial number of the gateway on-board debug probe.
-
-This is the same procedure as in the previous chapter. I choose to set the serial number to *3*.
-
 === Task 1
 
 I could not complete this task with the LaunchPad as shipped.
@@ -23,40 +19,13 @@ image::gateway-network-terminal-demo.png[network terminal demo]
 
 I then flashed the `out_of_box_CC3220SF_LAUNCHXL_tirtos_ccs` demo project as described.
 
-
-=== Task 3
-
-In order to find out the port of the USB serial connection, I run:
-
-[source, bash]
-----
-$ ls -l /dev/serial/by-id
-total 0
-lrwxrwxrwx 1 root root 13 Nov  7 18:34 usb-Texas_Instruments_XDS110__03.00.00.05__Embed_with_CMSIS-DAP_1-if00 -> ../../ttyACM0
-lrwxrwxrwx 1 root root 13 Nov  7 18:34 usb-Texas_Instruments_XDS110__03.00.00.05__Embed_with_CMSIS-DAP_1-if03 -> ../../ttyACM1
-----
-
-The correct port is either `ttyACM0` or `ttyACM1`, in my case it was the former one.
-
-
-When I try to run the first debug session for the `network_terminal_CC3220SF_LAUNCHXL_tirtos_ccs` project from CCS , I got this:
-
-[[error1, connection error]]
-.Error message when opening a debug session to the CC3220SF LaunchPad.
-image::CC3220SF-debug-error.png[error message]
-
-I am not sure what finally allowed me to connect, but I suppose I needed to unpluck/repluck the micro USB connector.
-Presumably, the Uniflash application that I used to flash the binaries still kept a connection to the board.
-I did not need to change jumper positions on the board.
-
-Finally, the default target configuration is fine (with the modification for the serial number):
+The default target configuration is correct (I set the serial number for the gateway LaunchPad to _3_):
 
 [[target-conf]]
 .Default target with the custom serial number
 image::CC3220SF-target-conf-default.png[target conf]
 
-
-While I was able to also start a debug session for the `out_of_box_CC3220SF_LAUNCHXL_tirtos_ccs` project,
+While I was able to start a debug session for the `out_of_box_CC3220SF_LAUNCHXL_tirtos_ccs` project,
 the loaded program was not persisted to flash, rather the previsiouly flashed network terminal demo would run upon reset.
 Also, I did not get any terminal output, so there seems to be a difference between
 the binaries I flashed in Task 1 and the one I created with CCS.
@@ -77,15 +46,10 @@ image::sta-connect-to-AP.png[STA connects to AP]
 
 === Recompiling from source
 
-I had to deactivate Remote System Explorer Operation http://e2e.ti.com/support/tools/ccs/f/81/t/733445?CCS-CCSV6-1-3-compiler-6-4-12-TMS320F2812-Remote-system-Explorer-Operation-slowing-down-compiling-
+I import the example project `15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs`
+from `sunvittali.ch-5-TIR-1002/tidc01002/examples/cc3220sf_gateway_app/15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs`
 
-import `15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs` from vittali.ch-5-TIR-1002/tidc01002/examples/cc3220sf_gateway_app/15_4_Stack_Gtway_IBM_CC3220SF_LAUNCHXL_tirtos_ccs
+where `vittali.ch-5-TIR-1002` is the {r0} and `tidc01002` the source code repo of the TI Design (used as a git submodule)
 
-where vittali.ch-5-TIR-1002 is the compagnion repo and tidc01002 the source repo of the TI Design ( a git submodule)
-
-/media/p/nuage/dev/ti/ccs920/simplelink_cc32xx_sdk_3_30_01_02/source/ti/posix/ccs
-
-
-https://e2e.ti.com/support/wireless-connectivity/wifi/f/968/t/896918
-
-copy to 'gateway'
+The project won't compile because of issues with virtual folders and paths.
+Also, the following header files are missing <<e2e3>>:

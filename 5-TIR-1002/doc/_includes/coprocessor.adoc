@@ -4,14 +4,9 @@
 
 === Copy the example project
 
-I import the following projects into the CCS workspace as described in the
-SimpleLink CC13x2 26x2 SDK (3.40.00.02) documentation of the http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=AFU6dryAU8NukjdRPy4T4Q__pTTHBmu__LATEST[Sensor and Collector - TI 15.4-Stack Project Zero]
+I import the project `coprocessor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg` into the CCS workspace.
 
-. coprocessor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
-
-Within CCS, I then copy the projects into {r0}, with the following abbreviated names:
-
-. coprocessor-uart
+Within CCS, I then copy the project as `coprocessor-uart` into {r0}.
 
 === UART configuration
 

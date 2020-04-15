@@ -25,16 +25,5 @@ $ ibmcloud push --cf
 
 I am unable to open the network as explained in Figure 67 of the reference document <<e2e2>>.
 
-
-
-=== cannot open network
-
-
-I select the sensor_cc13x2_lp_default_863.hex image.
-
-recompile coprocessor image for 863 Mhz.
-
-=== Debugging
-
-I copied the `sensor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg` project imported from the `simplelink_cc13x2_26x2_sdk_3_30_00_03` sdk to the `sensor` project
-in the compagnion repo.
+I suspect a communication problem between coprocessor and gateway or/and the coprocessor and the sensor. Clearly, the coprocessor
+must be configured to use the european 863 Mhz band, but it is not clear to me how this configuration can be performed.

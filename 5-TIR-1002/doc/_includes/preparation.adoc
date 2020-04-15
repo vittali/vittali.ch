@@ -6,9 +6,13 @@ Two sets of problems slowed me down:
 . disambiguation problems that arise when several LaunchPads are connected simultaneously to the same host computer
 . connections problems that prevents a program from being flashed to the MCU
 
+I summarize a couple of steps that helped me to streamline the development and testing workflow.
+I also present a couple of error messages, some of which I am unable to reproduce, that occurred when I tried to flash a binary to the MCU during a CCS debug session.
+I believe that having seen the error message in this memo up front, it becomes less frightening when it shows up in the IDE.
+
 === Disambiguating LaunchPads
 
-For this TI Design, at least two LaunchPads are conveniently connected simultaneously during programming and testing:
+For this TI Design, at least two LaunchPads are connected simultaneously during programming and testing:
 
 . When programming a LaunchPad with CCS, the flash utility must know which LaunchPad is supposed to receive the binary
 . When testing the application components, a user terminal session must know which serial port corresponds to each LaunchPad
@@ -91,8 +95,9 @@ Here is the rules file I currently use:
 include::{sourcedir}//99-my-usb-serial.rules[]
 ----
 
-The combination of properties `ID_SERIAL_SHORT` and `ID_USB_INTERFACE_NUM` allows to uniquely identify each serial channel.
-The first property is the serial number I set at the beginning of this chapter. Writing a unique serial to each LaunchPad is crucial for a smooth development flow.
+The combination of properties `ID_SERIAL_SHORT` and `ID_USB_INTERFACE_NUM` is a unique key for each serial channel.
+The first property is the serial number I set at the beginning of this chapter.
+Writing a unique serial to each LaunchPad is crucial for a smooth development flow.
 
 The last rule will enumerate the first channel on a LaunchPad with serial number 5 as `dev/ti500`, the second channel as `dev/ti503`.
 Currently, I don't know if the second channel is of any importance to the user.
@@ -120,3 +125,33 @@ $ udevadm test /sys/class/tty/ttyACMx
 ----
 
 === Connection problems
+
+On one occasion, the collector binary flashed to the LaunchPad produced scrambled output on the terminal connection.
+I reflashed, recompiled the program, to no avail. I then used UniFlash to clear the entire flash and this solved the problem:
+
+.Clearing the flash with UniFlash
+image::erase-all.png[erase flash]
+
+
+When I try to run the first debug session for the `network_terminal_CC3220SF_LAUNCHXL_tirtos_ccs` project from CCS , I got this:
+
+[[error1, connection error]]
+.Error message when opening a debug session to the CC3220SF LaunchPad.
+image::CC3220SF-debug-error.png[error message]
+
+I am not sure what finally allowed me to connect, but I suppose I needed to unpluck/repluck the micro USB connector.
+Presumably, the Uniflash application that I used to flash the binaries still kept a connection to the board.
+I did not need to change jumper positions on the board.
+
+I encountered different error messages that I failed to write down, when the option
+
+ Connect to target on debugger startup
+
+is not checked in the Debug Configuration.
+
+.Debug Configuration with the 'Auto Run and Launch Options'
+image::DebugConfiguration_connect_ok.png[options]
+
+=== Other problems
+
+I had to deactivate Remote System Explorer Operation to speed up compilation, see <<e2e4>>
