@@ -4,6 +4,10 @@
 
 == Sensor and Collector - TI 15.4-Stack Project Zero
 
+The collector application is less complicated than the coprocessor. Therefore,
+I start my experiments with a sensor-collector network. Before passing to the sensor-coprocessor setup, I make sure to disconnect the collector from the host
+so that the sensor is forced to connect to the collector part of the coprocessor.
+
 To familiarize myself with the sensor and collector hardware,
 I follow the lab exercise {r1}. I use _GTKTerm_ from the Mint/Ubuntu distribution.
 

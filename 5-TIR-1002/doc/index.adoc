@@ -21,14 +21,14 @@ I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructu
 The reference document is {r3}. Related source code can be cloned from the {r0}. I use Linux Mint 19.2 Tina and Code Composer Studio 9.2.0 (CCS).
 
 The software architecture described in the TI Design is now part of the official {r4} documentation and I will follow the recommended learning path of the
- _SimpleLink Academy (3.30.03.00)_. However the TI Design has more details and is still a useful resources for understanding the TI 15.4 example projects.
+ _SimpleLink Academy (3.30.03.00)_. However the TI Design has more details and is still a useful resource for understanding the TI 15.4 example projects.
  More importantly, part of the software - the gateway project - is not available in the SDK and must be cloned from a git repository hosted by TI.
 
 NOTE: This memo is work in progress. Currently, I am unable to complete the TI Design. A support request on the TI E2E support forum is pending.
 
 == Introduction
 
-The proposed architecture for connecting wireless sensors to the Internet is based on four components, each of which include hardware and software:
+The proposed architecture for connecting wireless sensors to the Internet is based on the following components:
 
 . one or more sensors
 . a collector that manages and interacts with sensors
@@ -36,7 +36,25 @@ The proposed architecture for connecting wireless sensors to the Internet is bas
 . a gateway that relays data between an internet-based application like a webserver
 . a cloud service that allows for two way commmunication between an internet user and a set of sensors/actuators
 
-In this memo, I recount my experiences with each of these components.
+Why this memo when there is a comprehensive document by TI ?
+
+The TI document <<r31>>
+
+. tries to minimize the T.T.H.W ( https://www.youtube.com/watch?v=c9Xt6Me3mJ4&t=4104s[Time To Hello World]) by flashing prebuilt binaries
+. covers two alternative cloud services, Bluemix (IBM) and (AWS) Amazon, including details on how to create a cloud-enabled account
+. presents alternative apps for Android and iOS to configure the gateway part
+
+
+Whereas in this memo, I
+
+. proceed in small steps with verifiable results in order to gain at least a superficial understanding of each component
+. focus on IBM bluemix without going into details, which are the subject of a previous https://www.vittali.ch/2-nred-bluemix[memo]
+. do not mention any apps, since I could get none of them to work as advertised (on Android)
+. compile everything from source, rather than using prebuilt binaries
+. adapt my host development environment to a workflow where several LaunchPads are connected to the host computer simultaneously
+. summarize a couple of speed bumpers which increased the T.T.H.W
+
+Again, the T.T.H.W. is still unknown because I am currently unable to build the gateway application from source <<e2e3>>.
 
 include::{includedir}/preparation.adoc[]
 include::{includedir}/sensor-collector.adoc[]

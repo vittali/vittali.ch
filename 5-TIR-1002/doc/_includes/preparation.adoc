@@ -68,54 +68,55 @@ image::target-conf.png[target configuration]
 
 After the installation of CCS, a driver installation script must be run to complete the installation.
 Under linux, the script `$CCS_HOME/ccs/ccs_base/common/uscif/install/ti_permissions_install.sh` will install the `udev` rules file `71-ti-permissions.rules` under
-`/etc/udev/rules.d`.
+`/etc/udev/rules.d`. `udev` is the Linux subsystem for managing driver events
 
-When connect a LaunchPad to the host via USB, `udev` will load the required driver and allocate two port names, for example `ttyACM0` and `ttyACM1`.
+When I connect a LaunchPad to the host via USB, `udev` will load the required driver and allocate two port names, for example `ttyACM0` and `ttyACM1`.
 The first one is the one I need to choose in my terminal host program.
 
-A second LaunchPad will then enumerate as `ttyACM2` and `ttyACM3`.
+A second LaunchPad will then enumerate for example as `ttyACM2` and `ttyACM3`.
 
-The problem is, that if I disconnect/reconnect a LaunchPad - something that happens during development work - the port name will be different.
-This is extremely annoying as I am forced to discover the new port name by trial and error. It also prevents me from using default configurations for my terminal program.
+If I disconnect/reconnect a LaunchPad - something that happens during development work - a new the port name will be assigned.
+The old port name is still available, and if try to resuse it in my terminal application, I get an error message.
+This is extremely annoying as I am forced to discover the new port name by trial and error.
+It also prevents me from using default configurations for my terminal program.
 
-Trying to fix the port naming mess:
+A couple of hints on how to solve this problems can be found here <<r41>>, <<r42>>, <<r43>>
 
-https://unix.stackexchange.com/questions/66901/how-to-bind-usb-device-under-a-static-name
+Here is the rules file I currently use:
 
+:sourcedir:  /home/p/repo/sysadmin/setup/conf
 
-I got rid of all TI related .rules in /etc/udev/rules.d
-and added:
+[source,bash]
+----
+include::{sourcedir}//99-my-usb-serial.rules[]
+----
 
-99-my-usb-serial.rules
+The combination of properties `ID_SERIAL_SHORT` and `ID_USB_INTERFACE_NUM` allows to uniquely identify each serial channel.
+The first property is the serial number I set at the beginning of this chapter. Writing a unique serial to each LaunchPad is crucial for a smooth development flow.
 
-SUBSYSTEMS=="usb",ATTRS{idVendor}=="0451",ATTRS{idProduct}=="bef3",MODE:="0666",SYMLINK+="ti5%E{ID_USB_INTERFACE_NUM}"
+The last rule will enumerate the first channel on a LaunchPad with serial number 5 as `dev/ti500`, the second channel as `dev/ti503`.
+Currently, I don't know if the second channel is of any importance to the user.
 
-this will create:
+Here is an example where two LaunchPads with serial numbers _2_ and _6_ are connected to the host:
 
-5 is the serial number I gave to the coprocessor LaunchPad.
+[source,bash]
+----
+$ ls /dev/ti*
+lrwxrwxrwx 1 root root  7 Apr 15 21:43 /dev/ti -> hidraw4
+lrwxrwxrwx 1 root root 15 Apr 15 21:43 /dev/ti2 -> bus/usb/002/025
+lrwxrwxrwx 1 root root  7 Apr 15 21:43 /dev/ti200 -> ttyACM2
+lrwxrwxrwx 1 root root  7 Apr 15 21:43 /dev/ti203 -> ttyACM3
+lrwxrwxrwx 1 root root 15 Apr 15 19:39 /dev/ti6 -> bus/usb/002/024
+lrwxrwxrwx 1 root root  7 Apr 15 19:39 /dev/ti600 -> ttyACM0
+lrwxrwxrwx 1 root root  7 Apr 15 19:39 /dev/ti603 -> ttyACM1
+----
 
-/dev/ti500
-/dev/ti503
+I used the following commands to write these rules:
 
-see http://www.reactivated.net/writing_udev_rules.html#env in general
-see https://txlab.wordpress.com/2016/06/14/udev-rules-for-ttyusb-devices/ in particular which solves the disambiguaton problem.
-
-
-To find out idVendor and idProduct run
-
-
+[source,bash]
+----
 $ udevadm info -a /dev/ttyACMx
-
-to test the rules :
-
 $ udevadm test /sys/class/tty/ttyACMx
-
-this shows the env vars ID_xxx
-
- where x can be obtained like so:
-
-$ ls /dev/ttyACM*
- /dev/ttyACM2  /dev/ttyACM3
-
+----
 
 === Connection problems

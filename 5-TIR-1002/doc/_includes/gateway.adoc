@@ -1,11 +1,11 @@
 
-:r1: http://dev.ti.com/tirex/explore/node?devtools=CC3220SF-LAUNCHXL&node=AMbaIpevqf00fzNR.N96jg__fc2e6sr__LATEST[Meet the CC3220x LaunchPad Development Kit]
-:r2: http://www.ti.com/tool/CC3220SF-LAUNCHXL[SimpleLink™ Wi-Fi® CC3220SF wireless microcontroller LaunchPad™ development kit]
-:r3: http://www.ti.com/lit/ug/swru463b/swru463b.pdf[CC3220 SimpleLink™ Wi-Fi® LaunchPad™ DevelopmentKit Hardware]
-:r4: http://www.ti.com/lit/ug/swru461b/swru461b.pdf[CC3220 SimpleLink™ Wi-Fi® and Internet of Things Solution,a Single-Chip Wireless MCU Getting Started Guide]
+:r51: http://dev.ti.com/tirex/explore/node?devtools=CC3220SF-LAUNCHXL&node=AMbaIpevqf00fzNR.N96jg__fc2e6sr__LATEST[Meet the CC3220x LaunchPad Development Kit]
+:r52: http://www.ti.com/tool/CC3220SF-LAUNCHXL[SimpleLink™ Wi-Fi® CC3220SF wireless microcontroller LaunchPad™ development kit]
+:r53: http://www.ti.com/lit/ug/swru463b/swru463b.pdf[CC3220 SimpleLink™ Wi-Fi® LaunchPad™ DevelopmentKit Hardware]
+:r54: http://www.ti.com/lit/ug/swru461b/swru461b.pdf[CC3220 SimpleLink™ Wi-Fi® and Internet of Things Solution,a Single-Chip Wireless MCU Getting Started Guide]
 == Gateway
 
-To familiarize myself with the gateway hardware {r2}, I follow the lab exercise {r1}.
+To familiarize myself with the gateway hardware {r52}, I follow the lab exercise {r51}.
 
 === Setting the serial number of the gateway on-board debug probe.
 
@@ -15,7 +15,7 @@ This is the same procedure as in the previous chapter. I choose to set the seria
 
 I could not complete this task with the LaunchPad as shipped.
 
-I first followed {r4} to flash the latest service pack and the MCU binary `network_terminal_CC3220SF_LAUNCHXL_tirtos_ccs`.
+I first followed {r54} to flash the latest service pack and the MCU binary `network_terminal_CC3220SF_LAUNCHXL_tirtos_ccs`.
 
 [[network-terminal, network terminal demo]]
 .Terminal output for the network terminal demo.
