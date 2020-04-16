@@ -6,7 +6,7 @@
 
 I import the project `coprocessor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg` into the CCS workspace.
 
-Within CCS, I then copy the project as `coprocessor-uart` into {r0}.
+Within CCS, I then copy the project as `coprocessor-uart` into the {r0}.
 
 === UART configuration
 

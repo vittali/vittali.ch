@@ -16,7 +16,7 @@ image::sensor-collector-hardware.png[CC1352P1]
 === Copy the example projects
 
 I import the following projects into the CCS workspace as described in the
-SimpleLink CC13x2 26x2 SDK (3.40.00.02) documentation of the {r12}
+SimpleLink CC13x2 26x2 SDK (3.40.00.02) documentation of the <<r13>>
 
 . sensor_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
 . collector_CC1352P1_LAUNCHXL_tirtos_ccs_syscfg
@@ -34,7 +34,7 @@ Within CCS, I then copy the projects into {r0}, with the following abbreviated n
 
 I can't set the Sub-1 Ghz Frequency to 868 Mhz as I expected,
 the only choice for the european band seems to be 863 Mhz. This might be related
-to the channel selection, I need to read <<e2e1>>.
+to the channel selection, I need to read <<r11>>.
 
 .Configure the TI 15.4 Stack Sub 1-Ghz Frequency
 image::sensor-syscfg.png[sensor.syscfg]

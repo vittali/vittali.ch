@@ -4,7 +4,7 @@
 [bibliography]
 ==== Technical Documents
 
-- [[[15_4-td1]]] http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_50_00_08/docs/ti154stack/ti154stack-users-guide/ti154stack/introduction.html
+- [[[15_4-td1]]] http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_50_00_08/docs/ti154stack/ti154stack-users-guide/ti154stack/introduction.html[TI 15.4-Stack]
 
 [bibliography]
 ==== Training material

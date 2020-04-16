@@ -1,32 +1,45 @@
 
 == Preparation
 
-Two sets of problems slowed me down:
-
-. disambiguation problems that arise when several LaunchPads are connected simultaneously to the same host computer
-. connections problems that prevents a program from being flashed to the MCU
-
 I summarize a couple of steps that helped me to streamline the development and testing workflow.
 I also present a couple of error messages, some of which I am unable to reproduce, that occurred when I tried to flash a binary to the MCU during a CCS debug session.
 I believe that having seen the error message in this memo up front, it becomes less frightening when it shows up in the IDE.
 
+=== The companion repo
+
+While one part of the source code of the TI Design is now in the official SKD <<r12>>,
+the other part involving the gateway and the cloud/web front ent must be obtained from the https://git.ti.com/cgit/tidc01002/tidc01002[tidc01003 git repo] hosted by TI.
+Since I am likely to make changes to the TI repo, it is useful to add it to the {r0} of this memo as a git submodule:
+
+----
+$ git submodule add https://git.ti.com/git/tidc01002/tidc01002.git
+$ git submodule update --init
+$ git remote rename origin ti
+$ git remote add origin git@github.com:vittali/vittali.ch-5-TIR-1002-tidc01002.git
+----
+
+I can then clone the submodule:
+
+----
+$ git clone --recurse-submodules https://git.ti.com/git/tidc01002/tidc01002.git
+----
+
 === Disambiguating LaunchPads
 
-For this TI Design, at least two LaunchPads are connected simultaneously during programming and testing:
+Since at least two LaunchPads are connected simultaneously, I must ensure that:
 
-. When programming a LaunchPad with CCS, the flash utility must know which LaunchPad is supposed to receive the binary
-. When testing the application components, a user terminal session must know which serial port corresponds to each LaunchPad
+. when programming a LaunchPad with CCS, the flash utility must know which LaunchPad is supposed to receive the binary
+. when testing the application components, a user terminal session must know which serial port corresponds to each LaunchPad
 
 ==== Setting a unique serial number for each LaunchPad.
 
-The first step is to give each LaunchPad.footnote:[more precisely, the debug probe included on the LaunchPad]
+The first step is to give each LaunchPad{blank}footnote:[more precisely, the debug probe included on the LaunchPad]
 a unique serial number.
 
 I first label the LaunchPad board (see <<hardware>>) with the desired unique serial number (a non negative integer).
-I then connect the LaunchPad (and only this one) to the host and use the `xdsdfu` utility provided by TI
+I then connect the LaunchPad (and only this one) to the host and use the `xdsdfu` utility{blank}footnote:[part of the CCS installation]
 to write the choosen number to the LaunchPad. Here is an example session:
 
-[source, bash]
 ----
 cd $CCS_INSTALLDIR/ccs/ccs_base/common/uscif/xds110
 $ ./xdsdfu -e  <1>
@@ -71,8 +84,9 @@ image::target-conf.png[target configuration]
 === Controlling serial port enumeration
 
 After the installation of CCS, a driver installation script must be run to complete the installation.
-Under linux, the script `$CCS_HOME/ccs/ccs_base/common/uscif/install/ti_permissions_install.sh` will install the `udev` rules file `71-ti-permissions.rules` under
-`/etc/udev/rules.d`. `udev` is the Linux subsystem for managing driver events
+Under linux, the script `$CCS_HOME/ccs/ccs_base/common/uscif/install/ti_permissions_install.sh` will install the
+udev{blank}footnote:[udev is the Linux subsystem for managing driver events] rules file `71-ti-permissions.rules` under
+`/etc/udev/rules.d`.
 
 When I connect a LaunchPad to the host via USB, `udev` will load the required driver and allocate two port names, for example `ttyACM0` and `ttyACM1`.
 The first one is the one I need to choose in my terminal host program.
@@ -80,13 +94,13 @@ The first one is the one I need to choose in my terminal host program.
 A second LaunchPad will then enumerate for example as `ttyACM2` and `ttyACM3`.
 
 If I disconnect/reconnect a LaunchPad - something that happens during development work - a new the port name will be assigned.
-The old port name is still available, and if try to resuse it in my terminal application, I get an error message.
+Since the old port name is still available, I might be tempted to resuse it in my terminal application. This results in an an error message.
 This is extremely annoying as I am forced to discover the new port name by trial and error.
 It also prevents me from using default configurations for my terminal program.
 
 A couple of hints on how to solve this problems can be found here <<r41>>, <<r42>>, <<r43>>
 
-Here is the rules file I currently use:
+Here is my rules file:
 
 :sourcedir:  /home/p/repo/sysadmin/setup/conf
 
@@ -97,14 +111,12 @@ include::{sourcedir}//99-my-usb-serial.rules[]
 
 The combination of properties `ID_SERIAL_SHORT` and `ID_USB_INTERFACE_NUM` is a unique key for each serial channel.
 The first property is the serial number I set at the beginning of this chapter.
-Writing a unique serial to each LaunchPad is crucial for a smooth development flow.
 
 The last rule will enumerate the first channel on a LaunchPad with serial number 5 as `dev/ti500`, the second channel as `dev/ti503`.
 Currently, I don't know if the second channel is of any importance to the user.
 
 Here is an example where two LaunchPads with serial numbers _2_ and _6_ are connected to the host:
 
-[source,bash]
 ----
 $ ls /dev/ti*
 lrwxrwxrwx 1 root root  7 Apr 15 21:43 /dev/ti -> hidraw4
@@ -118,7 +130,6 @@ lrwxrwxrwx 1 root root  7 Apr 15 19:39 /dev/ti603 -> ttyACM1
 
 I used the following commands to write these rules:
 
-[source,bash]
 ----
 $ udevadm info -a /dev/ttyACMx
 $ udevadm test /sys/class/tty/ttyACMx
@@ -126,13 +137,17 @@ $ udevadm test /sys/class/tty/ttyACMx
 
 === Connection problems
 
+In no particular order a grab bag of problems I encountered.
+
+==== Force-clearing the flash
+
 On one occasion, the collector binary flashed to the LaunchPad produced scrambled output on the terminal connection.
 I reflashed, recompiled the program, to no avail. I then used UniFlash to clear the entire flash and this solved the problem:
 
 .Clearing the flash with UniFlash
 image::erase-all.png[erase flash]
 
-
+==== Error connecting to the target: (Error -260 @ 0x0)
 When I try to run the first debug session for the `network_terminal_CC3220SF_LAUNCHXL_tirtos_ccs` project from CCS , I got this:
 
 [[error1, connection error]]
@@ -143,7 +158,9 @@ I am not sure what finally allowed me to connect, but I suppose I needed to unpl
 Presumably, the Uniflash application that I used to flash the binaries still kept a connection to the board.
 I did not need to change jumper positions on the board.
 
-I encountered different error messages that I failed to write down, when the option
+==== Debug Configuration: Auto Run and Launch Options
+
+I encountered different error messages (that I failed to write down), when the option
 
  Connect to target on debugger startup
 
