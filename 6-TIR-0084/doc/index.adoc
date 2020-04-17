@@ -1,4 +1,4 @@
-= TI Reference Design TIDC-01002: Sub-1GHz Embedded Sensor to Cloud Industrial Internet of Things(IoT) Gateway Reference Design
+= TI Reference Design TIDEP0084: Sub-1 GHz Sensor to Cloud Industrial IoT Gateway Reference Design for Linux Systems
 :includedir: _includes
 :imagesdir: ./images
 :icons: font
@@ -11,24 +11,37 @@
 :r1: https://cloud.ibm.com[IBM Bluemix]
 :r2: http://www.ti.com/tool/TIDEP0084?jktype=design[Sub-1 GHz Sensor to Cloud Industrial IoT Gateway Reference Design for Linux Systems]
 :r3: http://www.ti.com/lit/ug/tiduci9c/tiduci9c.pdf[TI Designs:TIDEP0084 Sub-1 GHz Sensor-to-Cloud Industrial Internet-of-Things (IoT) Gateway Reference Design]
-:r4: http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_40_00_10/docs/ti154stack/ti154stack-users-guide/ti154stack/linux-index.html[TI 15.4-Stack Linux SDK]
 
-:r5: http://software-dl.ti.com/lprf/simplelink_cc13x0_sdk/1_30_00_06/exports/docs/ti154stack/ti154stack-sdg/ti154stack-sdg/index.html[TI 15.4-Stack Software Developer’s Guide]
+:r4: http://dev.ti.com/tirex/explore/node?node=AKhHIwnc97rQCOueQrdD8w__eCfARaV__LATEST[TI 15.4-Stack - Linux Gateway Project Zero]
+
+:r5: http://dev.ti.com/tirex/content/simplelink_cc13x0_sdk_1_40_00_10/docs/ti154stack/ti154stack-users-guide/ti154stack/linux-index.html[TI 15.4-Stack Linux SDK]
+
+:r6: http://software-dl.ti.com/lprf/simplelink_cc13x0_sdk/1_30_00_06/exports/docs/ti154stack/ti154stack-sdg/ti154stack-sdg/index.html[TI 15.4-Stack Software Developer’s Guide]
+
+:r7: http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit]
 
 [abstract]
 icon:home[link="https://vittali.ch"]
 
-I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Design {r2}, {r3}.
+I want to connect wireless sensor nodes to the IBM IoT Watson cloud infrastructure {r1} based on the TI Reference Design TIDEP0084 {r2}.
+The reference document {r3} is refered to as TI Design in this memo.
 
 == Introduction
 
+The TI Design is based on the BeagleBone Black (BBB) and has become part of the SimpleLink CC13x2 SDK Academy {r4}, more precisely the part of the Academy
+covering the {r5}.
+The BBB version has been complemented with Linux PC host based version.
+I will follow the documentation in the CC13x2 SDK Academy and in the {r6} and revert to the original TI Design only if necessary.
 
-The original ref design is based on the BeagleBone Black (BBB).
 
-This design is now available in the mainstream
-http://dev.ti.com/tirex/explore/node?devtools=LAUNCHXL-CC1352P1&node=ADuSIrFg2kUHlTd9Kp0MqQ__pTTHBmu__LATEST[TI 15.4-Stack - Linux Gateway Project Zero ]
-of the SimpleLink CC13x2 26x2 SDK. There is a BBB based version and a Linux PC host based version.
+In this project, I will first look at the PC based version, the BBB based version will follow later.
 
-In this project, I will look at the PC based version, the BBB based version will follow later.
+In either case, a _coprocessor_ based on a {r7} is used, which has been the subject of a previous https://www.vittali.ch/5-TIR-1002[memo].
 
-In either case, a _coprocessor_ based on a http://www.ti.com/tool/LAUNCHXL-CC1352R1[SimpleLink™ Multi-Band CC1352R Wireless MCU LaunchPad™ Development Kit] is used.
+
+Why this memo ?
+
+
+include::{includedir}/coprocessor.adoc[]
+include::{includedir}/linux-host.adoc[]
+include::{includedir}/refs.adoc[]

@@ -62,19 +62,21 @@ where `vittali.ch-5-TIR-1002` is the {r0} and `tidc01002` the source code repo o
 I then copied these projects to
 
  gateway
- gateway-base in the companion repo
+ gateway-base
+
+in the companion repo.
 
 The project won't compile because of issues with virtual folders and paths.
 Also, the following header files are missing <<e2e3>>:
 
 .Missing header files for the gateway project
-[cols="^3,<4,<3"]
+[cols="<3,<4,<3"]
 |===
 |missing file in TI Design | replacement | comment
 
-|ti/drivers/i2s/I2SCC32XXDMA.h | I2CC32XX.h |
+|ti/drivers/i2s/I2SCC32XXDMA.h | I2CC32XX.h | renamed
 
-|ti/drivers/net/wifi/bsd/sys/socket.h | |
+|ti/drivers/net/wifi/bsd/sys/socket.h | ti/net/bsd/sys/socket.h |
 
 |ti/drivers/SDSPI.h | - | no longer supported, can be removed
 
@@ -84,5 +86,5 @@ Also, the following header files are missing <<e2e3>>:
 
 
 In turns out that this is just the tip of the iceberg, a lot of changes are required to get the project to compile.
-Unfortunately, I still get plenty of linking errors and I am still not able to build the project.
+Unfortunately, I still get plenty of linking errors and I am not able to build the project.
 The companion repo contains the current unfinished state of the project.

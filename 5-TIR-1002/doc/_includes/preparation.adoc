@@ -24,12 +24,24 @@ I can then clone the submodule:
 $ git clone --recurse-submodules https://git.ti.com/git/tidc01002/tidc01002.git
 ----
 
+I then need to checkout a branch *before I make changes*:
+
+----
+$ cd tidc01002
+$ git checkout master
+<make changes>
+$ git add .
+$ git commit -m"my changes"
+$ git push origin master
+----
+
+
 === Disambiguating LaunchPads
 
 Since at least two LaunchPads are connected simultaneously, I must ensure that:
 
-. when programming a LaunchPad with CCS, the flash utility must know which LaunchPad is supposed to receive the binary
-. when testing the application components, a user terminal session must know which serial port corresponds to each LaunchPad
+. when programming a LaunchPad with CCS, the flash utility knows which LaunchPad is supposed to receive the binary,
+. when testing the application components, the user knows which serial port corresponds to each LaunchPad in order to be able to open a terminal session.
 
 ==== Setting a unique serial number for each LaunchPad.
 

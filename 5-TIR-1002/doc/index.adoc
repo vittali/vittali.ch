@@ -24,7 +24,7 @@ The software architecture described in the TI Design is now part of the official
  _SimpleLink Academy (3.30.03.00)_. However the TI Design has more details and is still a useful resource for understanding the TI 15.4 example projects.
  More importantly, part of the software - the gateway project - is not available in the SDK and must be cloned from a git repository hosted by TI.
 
-NOTE: This memo is work in progress. Currently, I am unable to complete the TI Design. A support request on the TI E2E support forum is pending.
+NOTE: This memo is work in progress. Currently, I am unable to complete the TI Design because of linking errors in the gateway subproject.
 
 == Introduction
 
