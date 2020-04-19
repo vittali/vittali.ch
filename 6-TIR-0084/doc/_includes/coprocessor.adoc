@@ -1,5 +1,4 @@
 
-
 == The Coprocessor
 
 The coprocessor runs the TI 15.4 stack and handles the wireless communication with the sensor nodes.
