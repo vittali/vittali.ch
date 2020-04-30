@@ -25,7 +25,6 @@ task finalize {
         from "public"
         into "../vittali.github.io"
         include '**/*'
-        println 'copied !'
       }
     }
 }
