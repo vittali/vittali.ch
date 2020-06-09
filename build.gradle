@@ -1,11 +1,13 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
+plugins {
+    id 'org.asciidoctor.jvm.convert' version '3.1.0' apply false
+    id 'org.asciidoctor.jvm.pdf' version '3.1.0' apply false
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
 
-    dependencies {
-        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
-    }
+allprojects {
+  repositories {
+    mavenCentral()
+  }
 }
 
 task finalize {
@@ -28,25 +30,46 @@ task finalize {
       }
     }
 }
-
 subprojects {
+  apply plugin: 'org.asciidoctor.jvm.convert'
+  apply plugin: 'org.asciidoctor.jvm.pdf'
 
-apply plugin: 'org.asciidoctor.convert'
-asciidoctor {
-  sourceDir = file('doc')
-  sources {
-    include '*.adoc'
+  asciidoctorj {
+      modules {
+         diagram.use()
+         diagram.version '1.5.16'
+      }
   }
-  outputDir = file("../public/${projectDir.getName()}")
-  separateOutputDirs=false
-  //doLast {
-  //  copy {
-   //     from 'html5'
-   //     into "../public/${projectDir.getName()}"
-   // }
-//}
-}
-asciidoctor.finalizedBy(finalize)
-}
+  asciidoctorPdf {
+      baseDirFollowsSourceFile()
+      sourceDir = file('doc')
+      sources {
+        include '*.adoc'
+    }
+    outputDir = file("../public/${projectDir.getName()}")
+    attributes 'allow-uri-read': true
+  }
 
+  asciidoctor {
+    baseDirFollowsSourceFile()
+    sourceDir = file('doc')
+    sources {
+        include '*.adoc'
+    }
+    outputDir = file("../public/${projectDir.getName()}")
+    attributes 'separateOutputDirs': false
+    copy {
+       from "doc/pdf"
+       into "../public/${projectDir.getName()}/pdf"
+       include '**/*.pdf'
+       //println "copy ../public/${projectDir.getName()}"
+     }
+  }
+  asciidoctor.finalizedBy(finalize)
+  test { // an example
+	    if (project.hasProperty('laptop')) {
+        exclude '**/TestWatchDir*'
+    	}
+	}
+}
 defaultTasks 'asciidoctor'
