@@ -5,15 +5,16 @@
 :includedir: _includes
 :imagesdir: ./images
 :source-highlighter: highlightjs
+:sectanchors:
 
 
 Tiny software and electronics projects (TiPs) are ubiquitous. The https://www.arduino.cc[The Arduino Ecosystem] has facilitated many of them.
 But some TiPs do not evolve and eventually become obsolete.
 Others do evolve and have a tendency to become un-tiny and untidy and unfit. 
 I would like my TiPs to evolve and to adapt to my needs while staying tiny. +
-In other words: I would like to make my TiPs resilient when submitted to changes.
+In other words, I would like to make my TiPs resilient when submitted to changes.
 This website is about exploring strategies to make TiPs resilient. +
-By the way: projects that are not tiny - in particular those that look tiny but turn out to be otherwise - are called _Not a TiPs_ (NoTips).
+Projects that are not tiny - in particular those that look tiny but turn out to be otherwise - are called NoTips (Not a TiPs).
 
 Each project has a companion github repository. Please use the github issue tracker for questions, feedback and corrections.
 Or contact me directly with the email form below.
@@ -63,6 +64,8 @@ This projects is very similar to <<TiPs_5, TiPs #5>>.
 
 *Status*: on hold.
 
+https://github.com/vittali/TiPs_6[compagnion repo]
+
 == TiPs #5
 
 * https://vittali.ch/TiPs_5[Choosing a hardware toolchain for a cloud connected sensor (microcontroller based)]
@@ -91,6 +94,8 @@ european countries and GSM 3 is bound for the same fate within the next five yea
 
 *Status*: on hold.
 
+https://github.com/vittali/TiPs_5[compagnion repo]
+
 == TiPs #4
 
 * https://vittali.ch/TiPs_4[Choosing another wireless microcontroller with sensors]
@@ -99,6 +104,8 @@ This projects is very similar to <<TiPs_3, TiPs #3>>. However, the getting-start
 when I know more about BLE and microcontrollers.
 
 *Status*: on hold.
+
+https://github.com/vittali/TiPs_4[compagnion repo]
 
 == TiPs #3
 
@@ -130,6 +137,9 @@ differs enormously. So does the quality of IDEs (Integrated Development Environm
 of all the documentation that is typically involved in microcontroller TiPs.
 
 *Status*: #failed#.
+
+
+https://github.com/vittali/TiPs_3[compagnion repo]
 
 == TiPs #2
 
@@ -165,6 +175,9 @@ mixing code and visualization elements (dashboards) runs foul of established sof
 
 *Status*: #failed#.
 
+
+https://github.com/vittali/TiPs_2[compagnion repo]
+
 == TiPs #1
 
 * https://vittali.ch/TiPs_1[Test automation with the Programmable Real-Time Unit (PRU) on the TI/Sitara processor]
@@ -185,6 +198,8 @@ mixing code and visualization elements (dashboards) runs foul of established sof
 . icon:minus[role=red] icon:minus[role=white] icon:minus[role=white] [Checked 73 links, 41 destination URLs, 2 have errors].
 
 *Status*: on hold.
+
+https://github.com/vittali/TiPs_1[compagnion repo]
 
 == Contact & Imprint
 
