@@ -8,13 +8,14 @@
 :sectanchors:
 
 
-Tiny software and electronics projects (TiPs) are ubiquitous. The https://www.arduino.cc[The Arduino Ecosystem] has facilitated many of them.
+Tiny software and electronics projects (TiPs) are ubiquitous. The https://www.arduino.cc[Arduino Ecosystem], amongst others, has facilitated many of them.
 But some TiPs do not evolve and eventually become obsolete.
 Others do evolve and have a tendency to become un-tiny and untidy and unfit. 
 I would like my TiPs to evolve and to adapt to my needs while staying tiny. +
 In other words, I would like to make my TiPs resilient when submitted to changes.
 This website is about exploring strategies to make TiPs resilient. +
-Projects that are not tiny - in particular those that look tiny but turn out to be otherwise - are called NoTips (Not a TiPs).
+Projects that are not tiny - in particular those that look tiny but turn out to be otherwise - are called NoTiPs (Not a TiPs).
+I hope to demonstrate that these are even more ubiquitous, hiding in plain sight.
 
 Each project has a companion github repository. Please use the github issue tracker for questions, feedback and corrections.
 Or contact me directly with the email form below.
@@ -28,7 +29,7 @@ Copyright (C) 2024 Peter Vittali
 == TiPs #7
 
 
-* Smart Village: Remote monitoring of drinking water consumption in a rural environment icon:file[link=TiPs_7/main.pdf].
+* icon:file[link=TiPs_7/main.pdf] Smart Village: Remote monitoring of drinking water consumption in a rural environment. icon:file[link=TiPs_7/main.pdf]
 
 
 .Objectives (_Jan 2024_)
